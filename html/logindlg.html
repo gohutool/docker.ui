@@ -1,0 +1,34 @@
+<div style="margin: 0px;">
+</div>
+
+<div class="cubeui-fluid" id="company-detail-form">
+
+    <fieldset>
+        <legend>登录信息(必填)</legend>
+    </fieldset>
+
+
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm11">
+            <label class="cubeui-form-label">登录账号:&emsp;&emsp;</label>
+            <div class="cubeui-input-block">
+                <input type="text" name="username" data-toggle="cubeui-textbox"
+                       data-options="validType:['length[4, 40]'],required:true,prompt:'用户的登录标识，必须填写'">
+                <input type="hidden" name="grant_type" value="password">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm11">
+            <label class="cubeui-form-label">密&emsp;&emsp;码:&emsp;&emsp;</label>
+            <div class="cubeui-input-block">
+                <input type="text" name="password" data-toggle="cubeui-passwordbox"
+                       data-options="validType:['length[1, 40]'],required:true,prompt:'密码，必须填写'">
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,256 @@
+body {
+	margin:0;
+	font:12px Arial,sans-serif;
+}
+html,body {
+	-webkit-text-size-adjust:none;
+	background:#f7f7f7;
+}
+div,form,input,textarea,p,ul,li,dl,dt,dd,h1,table,h2 {
+	padding:0;
+	margin:0;
+}
+li {
+	list-style-type:none;
+}
+ol,ul {
+	list-style:none;
+}
+input {
+	vertical-align:middle;
+	font-size:100%;
+}
+img {
+	vertical-align:top;
+	border:0;
+}
+em,i {
+	font-style:normal;
+}
+.l {
+	float:left;
+}
+.r {
+	float:right;
+}
+.c {
+	clear:both;
+}
+.o {
+	overflow:hidden;
+}
+.left {
+	float:left;
+}
+.right {
+	float:right;
+}
+a {
+	color:#666;
+	text-decoration:none;
+}
+a:hover {
+	color:#F60;
+	text-decoration:underline;
+}
+.clearfix {
+	*zoom:1;
+}
+.clearfix:before,.clearfix:after {
+	display:table;
+	content:"";
+}
+.clearfix:after {
+	clear:both;
+}
+.cubeui-timeaxis-container {
+	position:relative;
+	width:1000px;
+	margin:0 auto;
+}
+
+ul, li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+	cursor: point;
+}
+hr {
+	height: 0;
+	border-left: none;
+	border-right: 0;
+	border-top: 1px dashed #2d2f34;
+	border-bottom: 1px dashed #474954;
+}
+.top{
+	margin-top: 60px;
+}
+.top img{
+	width: 100%;
+	margin-top: -10px;
+}
+.cubeui-timeaxis-container {
+	padding: 50px 0;
+	min-height: 720px;
+	background: #3a3c48 url("../images/timeaxis/log/content-bg.png");
+	width: 100%;
+}
+.cubeui-timeaxis-container .wrapper {
+	position: relative;
+	background: url("../images/timeaxis/log/release-bg.png") no-repeat right top;
+	width: 100%;
+	margin: 0 auto;
+}
+.cubeui-timeaxis-container .light {
+	position: absolute;
+	left: 55px;
+	top: -50px;
+	width: 152px;
+	height: 191px;
+	background: url("../images/timeaxis/log/light-top.png") no-repeat top center;
+}
+.cubeui-timeaxis-container .light i {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background: url("../images/timeaxis/log/light.png") no-repeat top center;
+}
+.cubeui-timeaxis-container .line-left {
+	position: absolute;
+	left: 0;
+	top: 15px;
+	width: 70px;
+}
+.cubeui-timeaxis-container .line-right {
+	position: absolute;
+	right: 0;
+	top: 15px;
+	width: 460px;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main {
+	background: url("../images/timeaxis/log/line-bg.png") repeat-y 249px 0;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .title {
+	position: absolute;
+	line-height: 40px;
+	padding-left: 67px;
+	left: 230px;
+	top: 0;
+	color: #58a6fb;
+	font-size: 24px;
+	background: url("../images/timeaxis/log/clock.png") no-repeat left top;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year {
+	position: relative;
+	z-index: 100;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year h2 {
+	height: 40px;
+	width: 170px;
+	/*padding-right: 30px;*/
+	font-size: 24px;
+	line-height: 40px;
+	text-align: right;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year h2 a {
+	color: #58a6fb;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year h2 i{
+	display:block;
+	position:relative;
+	height:0;
+	width:0;
+	left:190px;
+	top:-20px;
+	border-width:6px;
+	border-style:solid;
+	border-color:#59a7fb transparent transparent transparent;
+	-webkit-transition:.5s;
+	-moz-transition:.5s;
+	-ms-transition:.5s;
+	-o-transition:.5s;
+	transition:.5s;
+	-webkit-transform-origin:6px 3px;
+	-moz-transform-origin:6px 3px;
+	-ms-transform-origin:6px 3px;
+	-o-transform-origin:6px 3px;
+	transform-origin:6px 3px
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list{
+	margin:10px 0;
+	position:relative;
+	overflow:hidden;
+	-webkit-transition:height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
+	-moz-transition:height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
+	-ms-transition:height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
+	-o-transition:height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s;
+	transition:height 1s cubic-bezier(0.025,0.025,0.000,1.115),opacity 1s
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul {
+	bottom: 0;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li {
+	background: url("../images/timeaxis/log/circle.png") no-repeat 235px 31px;
+	padding: 30px 0;
+	color: #a1a4b8;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li.highlight {
+	background-image: url("../images/timeaxis/log/circle-h.png");
+}
+.cls {
+	zoom: 1;
+}
+.cls:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li.highlight .date, .cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li.highlight .intro {
+	color: #ec6a13;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li .date,.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li .version{
+	float:left;
+	display:block;
+	clear:left;
+	width:200px;
+	line-height:24px;
+	text-align:right
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li .date{
+	font-size:18px;
+	line-height:32px;
+	color:#bec1d5
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li .intro, .cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li .more {
+	float: left;
+	display: block;
+	width: 400px;
+	margin-left: 100px;
+	line-height: 24px;
+}
+.cubeui-timeaxis-container .cubeui-timeaxis-main .year .list ul li .intro {
+	font-size: 18px;
+	line-height: 32px;
+	color: #63d029;
+}
+.cubeui-timeaxis-container .wrapper:first-child .cubeui-timeaxis-main .year.close-year h2 i{
+	transform:rotate(-90deg);
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg)
+}
+.cubeui-timeaxis-container .wrapper:first-child .cubeui-timeaxis-main .year.close-year .list{
+	opacity:0;
+	height:0!important;
+}
+.ie7 .cubeui-timeaxis-container .cubeui-timeaxis-main .year h2 i{
+	left:40px
+}

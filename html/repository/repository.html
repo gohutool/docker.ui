@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="reposDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="reposDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'reposDg'
+               }">
+
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        createRepos();
+                    },
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-plus'
+                }">添加仓库</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                onClick:function(){
+                    updateRepos();
+                },
+                btnCls: 'cubeui-btn-slateblue',
+                iconCls: 'fa fa-tags'
+            }">编辑仓库</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        removeRepos();
+                    },
+                    extend: '#reposDg-toolbar',
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-times'
+                }">删除仓库</a>
+
+            <form id="queryForm" class="search-box">
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-refresh',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'reposDg'}">刷新</a>
+            </form>
+        </div>
+    </div>
+</div>
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/repository/repository.js",
+            ],
+            render: function () {
+                stop = true
+                console.log("finish")
+                APP.renderBody("#tmpl1", {})
+            }
+        }
+    });
+
+
+    APP.fn(function(){
+        loadRepository();
+    })
+</script>
+</html>

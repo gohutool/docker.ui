@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="containersDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="containersDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'containersDg'
+               }">
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    method1: 'openDialog',
+                    onClick:function(){
+                        createContainerPanel();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-plus'
+                }">创建容器</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        cloneContainerPanel();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-yellowgreen',
+                    iconCls: 'fa fa-ticket'
+                }">克隆容器</a>
+
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        exportContainer2();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-orange',
+                    iconCls: 'fa fa-sign-out'
+                }">导出tarball</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        archiveContainer2();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-limegreen',
+                    iconCls: 'fa fa-sign-out'
+                }">归档</a>
+
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        extractContainer2();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-pink',
+                    iconCls: 'fa fa-sign-in'
+                }">导入归档</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        removeLease();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-times'
+                }">删除容器</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        pruneContainer();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-dodgerblue',
+                    iconCls: 'fa fa-trash'
+                }">清理容器</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        runLease();
+                    },
+                    extend: '#containersDg-toolbar',
+                    btnCls: 'cubeui-btn-olive',
+                    iconCls: 'fa fa-play-circle-o'
+                }">运行新容器</a>
+
+<!--            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{-->
+<!--                    onClick:function(){-->
+<!--                        execLease();-->
+<!--                    },-->
+<!--                    extend: '#containersDg-toolbar',-->
+<!--                    btnCls: 'cubeui-btn-pink',-->
+<!--                    iconCls: 'fa fa-random'-->
+<!--                }">执行</a>-->
+
+            <form id="queryForm" class="search-box">
+                <span style='line-height: 30px;padding-right:0px'>所有容器：</span>
+                <input id='refreshBtn'  name="all"  value='1' data-toggle="cubeui-switchbutton" style="width:50px;height1:30px" checked="true"
+                    data-options="
+                    onText:'',offText:'',
+                    onChange: function(checked){
+                        $('#searchbtn').trigger('click');
+                    }
+                    ">
+
+                <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+
+                <input type="text" id='search_type' name="search_type" value="name" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:120,
+                                required:true,prompt:'查询方式，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'Label'},{'KEY':'before','TEXT':'Before'},
+                                {'KEY':'since','TEXT':'Since'},{'KEY':'reference','TEXT':'Refer'},{'KEY':'ancestor','TEXT':'Ancestor'},
+                                {'KEY':'expose','TEXT':'Expose'},{'KEY':'publish','TEXT':'Publish'},{'KEY':'volume','TEXT':'Volume'}]
+                       ">
+                <input type="text" id='search_key' name="search_key" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                            console.log(111);
+                            $('#searchbtn').trigger('click');
+                       }, mask:'{{:~js(prefix)}}', prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'containersDg'}">查询</a>
+            </form>
+        </div>
+        <!-- 表格工具栏结束 -->
+
+    </div>
+</div>
+
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [
+                ROOT_RES_URL + "/static/plugins/jquery/jquery-jsonview-master/dist/jquery.jsonview.css",
+                ROOT_RES_URL + "/static/plugins/xterm/css/xterm.css"
+            ],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/containers/container.js",
+                ROOT_RES_URL + "/containers/tpl.js",
+                ROOT_RES_URL + "/static/plugins/jquery/jquery-jsonview-master/dist/jquery.jsonview.min.js",
+                ROOT_RES_URL + "/static/plugins/xterm/lib/xterm.js",
+                ROOT_RES_URL + "/static/plugins/xterm/lib/xterm-addon-fit.js"
+
+            ],
+            render: function () {
+                stop = true
+                console.log("finish")
+                APP.renderBody("#tmpl1", {})
+                // let t = $.templates("#tmpl1").render({id:"1022", name:"davidliu"})
+                // $('body div').remove()
+                // $(t).appendTo($('body'))
+            }
+        }
+    });
+
+
+    APP.fn(function(){
+        loadLease();
+    })
+</script>
+<style>
+    .card-hoverable {
+        cursor: pointer;
+    }
+    .card-head {
+        line-height: 48px !important;
+        min-height: 48px;
+        margin-bottom: -1px;
+        padding: 0 15px;
+        color: rgba(0, 0, 0, .85);
+        font-weight: 500;
+        font-size: 13px;
+        background: transparent;
+        border-bottom: 1px solid #f0f0f0;
+        border-radius: 2px 2px 0 0;
+        zoom: 1;
+        display: flex;
+    }
+    .card-body {
+        padding: 5px;
+    }
+    .padding-card-body{
+        position: relative;
+        padding: 10px 15px;
+        line-height: 24px;
+    }
+    .nepadmin-pad-b20 {
+         padding-bottom: 20px !important;
+     }
+    .nepadmin-pad-b10 {
+        padding-bottom: 10px !important;
+    }
+
+    .nepadmin-pad-b20 h2 {
+        font-size: 1.0em;
+        font-weight: bold;
+    }
+    .nepadmin-font-14 {
+        font-size: 11px !important;
+    }
+    .nepadmin-fr {
+        float: right;
+    }
+    .layui-bg-number .panel-title-portal {margin-top:0;margin-bottom:0;font-size:12px;color:inherit;}
+
+    .layui-bg-number h1, .layui-bg-number h2, .layui-bg-number h3, .layui-bg-number h4, .layui-bg-number h5, .layui-bg-number h6{
+        text-align: left;
+    }
+
+    .layui-bg-number h1{
+        font-size: 2em;
+    }
+    .layui-bg-number small{
+        text-align: left;
+    }
+    .layui-bg-number .panel-content{
+        text-align: left!important;
+    }
+
+    .layui-bg-number {background-color:#F8F8F8;}
+
+    .layui-bg-number.panel {
+        width: 100%!important;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+
+    .layui-bg-number .panel-body {
+        background-color: #F8F8F8;
+        padding: 15px;
+    }
+    .layui-bg-number .pull-right {
+        float: right;
+    }
+    .layui-bg-number .label {
+        display: inline;
+        padding: .2em .6em .3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        margin-top: .3em;
+    }
+
+    .container-termina-body {
+        padding: 0;
+        background-color: #000;
+    }
+
+    #container-terminal {
+    }
+
+</style>
+
+<script>
+    window.onunload = function () {
+        console.log("++++++++++++++++++onunload");
+        releaseAllWSResource();
+        console.log("++++++++++++++++++Release All websocket resource");
+    }
+</script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <meta name="renderer" content="webkit">
+    <script src="./static/common/js/ui.js"></script>
+    <title>DockerUI power by joinsunsoft</title>
+    <meta name="keywords" content='${APPLICATION_TITLE}'/>
+    <meta name="description" content='${APPLICATION_TITLE}'/>
+</head>
+<script>
+    if (window.top === window.self) {
+    } else {
+        window.top.location.href = contextpath + '/login.html';
+    }
+</script>
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+<div class="box"
+     style='background: url("./static/bg.png") no-repeat; background-size:100% 100%; margin:0px'>
+    <div class="login-box" style="left: 85%;max-width: 400px;">
+        <div class="login-title text-center">
+            <span class="flag"><i class="fa fa-user"></i></span>
+            <div style="float: left;margin-left:10px;">
+                <img src="./static/cubeui/images/logo_100.png" alt="" style="width: 60px;height: 60px;">
+            </div>
+
+            <h1 class="text-center">
+                <small>Docker UI</small>
+            </h1>
+        </div>
+        <div class="login-content ">
+            <div class="form">
+                <form id='form1' class="form-horizontal" action="#" method="post">
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="input-group" style1="margin-top:10px!important;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" id=email name="username" class="form-control"
+                                       placeholder="登录账号"
+                                       value="">
+                                <input type="hidden" name="grant_type" value="password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="input-group" style1="margin-top:10px!important;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" id="password" name="password" class="form-control"
+                                       placeholder="密码" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-center">
+                            <input style="display:none;" type="text" name="practicetype" value='' data-toggle1="cubeui-combobox"
+                                   data-options="
+						        prompt:'选择语言',width:140,height:42,
+						         valueField:'KEY',
+						         textField:'TEXT',
+
+						         data:[],
+						         onChange:function(nv, ov){
+						         	$.app.debug(nv);
+						         	$.easyui.debug.breakpoint('=====选择语言 onChange');
+
+						         	window.location.href=contextpath + '/html/login/?lang='+nv;
+						         }
+					        ">
+                            <button type="button" id="login" class="btn btn-sm btn-success">
+                                <span class="fa fa-check-circle"></span> 登录
+                            </button>
+                            <button type="button" id="reset" class="btn btn-sm btn-danger">
+                                <span class="fa fa-close"></span> 重置
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerbox">
+        <div class="footer">
+            锦翰科技（深圳）有限公司 版权所有 ©2017
+            <a href='tel:13510831210'><span
+                    style='background-color:#0BB20C;color:#FFFFFF;padding-right:6px;padding-left:6px;border-radius:3px;'>销售电话</span></a>
+            <a href='tel:13510831210'><span
+                    style='background-color:#0BB20C;color:#FFFFFF;padding-right:6px;padding-left:6px;border-radius:3px;'>0755-13510831210</span></a>
+            <a href='http://wpa.qq.com/msgrd?v=3&uin=793875613&site=oicqzone.com&menu=yes'><span
+                    style='background-color:#F10D0D;color:#FFFFFF;padding-right:6px;padding-left:6px;border-radius:3px;'>QQ客服</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="text-danger"><i class="fa fa-warning"></i> <span id='msg'>${i18n.text('core.login.error', '用户名或密码错误，请重试！')}</span></span>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+</body>
+<script>
+
+    new APP({
+        css: [
+            ROOT_RES_URL + "/static/plugins/bootstrap/css/bootstrap.min.css",
+            ROOT_RES_URL + "/static/plugins/font-awesome/css/font-awesome.min.css",
+            ROOT_RES_URL + "/static/module/profile/login.css",
+        ],
+        js: [
+            ROOT_RES_URL + "/static/plugins/bootstrap/js/bootstrap.min.js",
+            ROOT_RES_URL + "/static/module/profile/login.js",
+            ROOT_RES_URL + "/static/plugins/bootstrap/plugins/html5shiv.min.js",
+            ROOT_RES_URL + "/static/plugins/bootstrap/plugins/respond.min.js",
+        ],
+        render: function () {
+            stop = true
+            console.log("finish")
+            APP.renderBody("#tmpl1", {id:"1022", name:"davidliu"})
+            //
+            // let t = $.templates("#tmpl1").render({id:"1022", name:"davidliu"})
+            // $('body div').remove()
+            // $(t).appendTo($('body'))
+
+            $(function () {
+                console.log("Jquery is ok")
+            })
+        }
+    });
+</script>
+</html>

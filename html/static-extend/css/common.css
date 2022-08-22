@@ -1,0 +1,160 @@
+#west .fa{
+    font: normal normal normal 17px FontAwesome!important;
+}
+
+#west .tree-icon {
+    margin-top: 10px!important;
+}
+
+.tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
+    margin: 0 0!important;
+}
+
+#west .tree-file {
+    overflow: hidden;
+    height: 30px!important;
+}
+
+#west .tree-title {
+    padding-left: 14px;
+}
+
+.fa{
+    font: normal normal normal 17px FontAwesome!important;
+}
+
+#index_tabs .tabs-tool .fa{
+    font: normal normal normal 14px FontAwesome!important;
+    font-size: 13px!important;
+}
+
+.tabs-icon {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 10px;
+    top: 45%;
+}
+
+.tabs-with-icon {
+    padding-left: 22px!important;
+}
+.tabs li a.tabs-inner {
+    padding: 0 12px!important;
+}
+.panel-with-icon {
+    padding-left: 32px!important;
+}
+
+.panel-icon.fa {
+    padding-left: 10px!important;
+}
+
+.window .window-header .panel-with-icon {
+    padding-left: 45px!important;
+}
+
+.window .window-header .panel-icon, .window .window-header .panel-tool {
+    margin-top: -10px!important;
+}
+
+.l-btn-icon.fa{
+    font: normal normal normal 14px FontAwesome!important;
+}
+
+.swithbutton-label{
+    width:auto;float: right!important;
+}
+
+.swithbutton-label-2{
+    display: inline-block!important;
+    width:auto;float: none!important;
+}
+
+.swithbutton-col-1{
+    z-index: 9999!important;
+}
+
+.swithbutton-col-2{
+    z-index: 9998!important;
+}
+
+.swithbutton-col-3{
+    z-index: 9997!important;
+}
+
+
+.swithbutton-col-4{
+    z-index: 9996!important;
+}
+
+.swithbutton-col-5{
+    z-index: 9995!important;
+}
+
+.swithbutton-col-6{
+    z-index: 9994!important;
+}
+
+.swithbutton-col-7{
+    z-index: 9993!important;
+}
+
+.swithbutton-col-8{
+    z-index: 9992!important;
+}
+
+.textbox-addon .textbox-icon.fa-remove{
+    padding-top: 30%!important;
+    font-size: 14px!important;
+}
+
+.spinner .textbox-addon .textbox-icon.fa-remove{
+    padding-top: 15%!important;
+    font-size: 14px!important;
+}
+
+.combo .textbox-addon .textbox-icon.fa-remove{
+    padding-top: 15%!important;
+    font-size: 14px!important;
+}
+
+.panel-footer-no-border {
+    border: 0px solid #D3D3D3!important;
+}
+
+.panel-footer-no-background {
+    background: inherit!important;
+}
+
+.menu-line {
+    left: 30px!important;
+}
+.menu-item>.menu-text {
+    padding-left: 33px!important;
+}
+
+
+
+#west .tree-title {
+    font-size: 12px!important;
+}
+
+.cubeui-row-no-margin{
+    margin-bottom: 0px!important;
+    margin-top: 0px!important;
+}
+
+.cubeui-form-label-left{
+    display: inline-block!important;
+    width:auto;float: none!important;
+    padding-left: 10px!important;
+}
+
+
+.cubeui-content-selectable {
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+}

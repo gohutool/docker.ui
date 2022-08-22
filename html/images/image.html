@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="imagesDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="imagesDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'imagesDg'
+               }">
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    method1: 'openDialog',
+                    onClick:function(){
+                        pullImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-download'
+                }">拉取镜像</a>
+
+<!--            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{-->
+<!--                    onClick:function(){-->
+<!--                        keepaliveLease();-->
+<!--                    },-->
+<!--                    extend: '#imagesDg-toolbar',-->
+<!--                    btnCls: 'cubeui-btn-yellowgreen',-->
+<!--                    iconCls: 'fa fa-ticket'-->
+<!--                }">延续租约</a>-->
+
+<!--            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{-->
+<!--                    onClick:function(){-->
+<!--                        removeLease();-->
+<!--                    },-->
+<!--                    extend: '#imagesDg-toolbar',-->
+<!--                    btnCls: 'cubeui-btn-red',-->
+<!--                    iconCls: 'fa fa-times'-->
+<!--                }">删除镜像</a>-->
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        importImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-orange',
+                    iconCls: 'fa fa-sign-in'
+                }">导入tarball</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        loadImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-sign-in'
+                }">加载镜像</a>
+
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        buildImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-limegreen',
+                    iconCls: 'fa fa-puzzle-piece'
+                }">构建镜像</a>
+
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        exportImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-sign-in'
+                }">导出镜像</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        pushImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-ivory',
+                    iconCls: 'fa fa-arrow-circle-up'
+                }">推送镜像</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        createContainerFromImage();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-dodgerblue',
+                    iconCls: 'fa fa-toggle-right'
+                }">运行容器</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        emptyLease();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-brown',
+                    iconCls: 'fa fa-trash'
+                }">清理镜像</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        deleteBuild();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-slateblue',
+                    iconCls: 'fa fa-trash'
+                }">清理缓存</a>
+
+            <form id="queryForm" class="search-box">
+                <span style='line-height: 30px;padding-right:0px'>包含中间镜像：</span>
+                <input id='refreshBtn'  name="all"  value='1' data-toggle="cubeui-switchbutton" style="width:50px;height1:30px" checked1="true"
+                    data-options="
+                    onText:'',offText:'',
+                    onChange: function(checked){
+                        $('#searchbtn').trigger('click');
+                    }
+                    ">
+
+                <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+
+                <input type="text" id='search_type' name="search_type" value="name" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:120,
+                                required:true,prompt:'查询方式，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'Label'},{'KEY':'before','TEXT':'Before'},
+                                {'KEY':'since','TEXT':'Since'},{'KEY':'reference','TEXT':'Refer'}]
+                       ">
+                <input type="text" id='search_key' name="search_key" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                            console.log(111);
+                            $('#searchbtn').trigger('click');
+                       }, mask:'{{:~js(prefix)}}', prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'imagesDg'}">查询</a>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 表格工具栏结束 -->
+<div id="searchImageMm" data-toggle="cubeui-menu" style="width:120px;display:none" data-options="">
+    <div onclick="pullImgFromMenu()" data-options="iconCls:'fa fa-download'">拉取latest镜像</div>
+    <div onclick="setImgFromMenu()" data-options="iconCls:'fa fa-check-square-o'">指定镜像Tag</div>
+</div>
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [
+                ROOT_RES_URL + "/static/plugins/jquery/jquery-jsonview-master/dist/jquery.jsonview.css",
+            ],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/images/image.js",
+                ROOT_RES_URL + "/containers/tpl.js",
+                ROOT_RES_URL + "/static/plugins/jquery/jquery-jsonview-master/dist/jquery.jsonview.min.js",
+            ],
+            render: function () {
+                stop = true
+                console.log("finish")
+                APP.renderBody("#tmpl1", {})
+                refreshImageAndContainerInfo()
+
+                // let t = $.templates("#tmpl1").render({id:"1022", name:"davidliu"})
+                // $('body div').remove()
+                // $(t).appendTo($('body'))
+            }
+        }
+    });
+
+
+    APP.fn(function(){
+        loadLease();
+    })
+</script>
+</html>

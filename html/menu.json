@@ -1,0 +1,119 @@
+[
+  {
+    "id": 1350,
+    "pid": 1325,
+    "text": "概览<span class=\"title-summary layui-badge layui-badge-dot\"></span>",
+    "state": "closed",
+    "iconCls": "fa fa-windows",
+    "url": "./portal/index.html"
+  },
+  {
+    "id": 1365,
+    "pid": 1325,
+    "text": "镜像<span class=\"title-image layui-badge layui-bg-orange\">34</span>",
+    "textId":"images",
+    "state": "closed",
+    "iconCls": "fa fa-headphones",
+    "url": "./images/image.html"
+  },
+  {
+    "id": 1369,
+    "pid": 1325,
+    "textId":"containers",
+    "text": "容器 <span class=\"title-container layui-badge layui-bg-orange\">0</span> <span class=\"title-container2 layui-badge\" style=\"margin: 0px 0 0 -8px;\">10</span>  ",
+    "state": "closed",
+    "iconCls": "fa fa-superpowers",
+    "url": "./containers/container.html"
+  },
+  {
+    "id": 1327,
+    "pid": 1325,
+    "textId":"volumes",
+    "text": "数据卷<span class=\"title-volume layui-badge layui-bg-orange\">2</span>",
+    "state": "closed",
+    "iconCls": "fa fa-database",
+    "url": "./volumes/volume.html"
+  },
+  {
+    "id": 1328,
+    "pid": 1325,
+    "text": "Swarm集群",
+    "state": "closed",
+    "iconCls": "fa fa-sitemap",
+    "children":[
+      {
+        "id": 1338,
+        "pid": 1328,
+        "text": "集群信息",
+        "state": "open",
+        "iconCls": "fa fa-info-circle",
+        "url": "./swarm/info.html"
+      },
+      {
+        "id": 1337,
+        "pid": 1328,
+        "text": "节点",
+        "state": "open",
+        "iconCls": "fa fa-server",
+        "url": "./node/node.html"
+      },
+      {
+        "id": 1368,
+        "pid": 1328,
+        "text": "服务",
+        "state": "open",
+        "iconCls": "fa fa-spinner",
+        "url": "./service/service.html"
+      },
+      {
+        "id": 1369,
+        "pid": 1328,
+        "text": "任务",
+        "state": "open",
+        "iconCls": "fa fa-rebel",
+        "url": "./task/task.html"
+      },
+      {
+        "id": 12368,
+        "pid": 12328,
+        "text": "密码",
+        "state": "open",
+        "iconCls": "fa fa-key",
+        "url": "./secret/secret.html"
+      },
+      {
+        "id": 1362,
+        "pid": 1328,
+        "text": "配置",
+        "state": "open",
+        "iconCls": "fa fa-gear",
+        "url": "./config/config.html"
+      }
+    ],
+    "url": ""
+  },
+  {
+    "id": 11368,
+    "pid": 11328,
+    "text": "仓库",
+    "state": "open",
+    "iconCls": "fa fa-podcast",
+    "url": "./repository/repository.html"
+  },
+  {
+    "id": 12368,
+    "pid": 12328,
+    "text": "网络",
+    "state": "open",
+    "iconCls": "fa fa-usb",
+    "url": "./network/network.html"
+  },
+  {
+    "id": 13468,
+    "pid": 13428,
+    "text": "任务编排",
+    "state": "open",
+    "iconCls": "fa fa-delicious",
+    "url": "./orchestrator/orchestrator.html"
+  }
+]

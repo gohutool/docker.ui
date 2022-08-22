@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+
+    <script>
+        new APP(function(){
+            return {
+                css: [
+                    ROOT_RES_URL + "/swarm/info.css",
+                    ROOT_RES_URL + "/static/public/css/font.css",
+                    ROOT_RES_URL + "/static/public/css/main.css",
+                ],
+                js: [
+                    ROOT_RES_URL + "/api/api.js",
+                    ROOT_RES_URL + "/api/title.js",
+                    ROOT_RES_URL + "/swarm/info.js",
+                    ROOT_RES_URL + "/static/plugins/echarts/echarts.min.js",
+                ],
+                render: function () {
+
+
+
+                    rendSwarmPage();
+                }
+            }
+        });
+
+        APP.fn(function(){
+
+        })
+    </script>
+</head>
+
+<body style="background: #f7f7f7;">
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+    <div class="portal-page layui-container-fluid">
+
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md8">
+
+                <!-- COL 8-->
+
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col-md12">
+
+                        <div class="card card-hoverable">
+                            <div class="card-head">
+                                <!--<span class="card-head-icon"><svg t="1624610578335" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1065" width="100%" height="100%"><path d="M464.904 256.496L467.288 88H91.704v168.496h373.2z m0 0" fill="#76DA91" p-id="1066"></path><path d="M776.968 490.04l4.376-168.496H91.704v168.496h685.264z m0 0" fill="#76DA91" p-id="1067"></path><path d="M617.56 723.584l3.36-168.496H91.704v168.496h525.856z m0 0" fill="#76DA91" p-id="1068"></path><path d="M313.704 957.128l1.416-168.496H91.704v168.496h222z m0 0" fill="#76DA91" p-id="1069"></path><path d="M41.8 975.608V88.144H0V1024h1009.936v-48.392H41.8z m0 0" fill="#76DA91" p-id="1070"></path></svg></span>-->
+                                <span class="card-head-icon"><i class="fa fa-info-circle icon icon-blue"></i></span>
+                                <span>节点信息</span>
+                                <span style='float: right;position: absolute;right: 20px;height: 48px;'>
+                                自动刷新：<input id='refreshBtn' data-toggle="cubeui-switchbutton" style="height:30px" checked="true">
+                                </span>
+                            </div>
+
+                            <div class="card-body padding-card-body">
+                                <div class="welcome-module" style='min-height: 10px;'>
+                                    <div class="layui-row layui-col-space10">
+                                        <div class="layui-col-md3">
+                                            <div class="panel layui-bg-number" style="margin-bottom: 0px;">
+                                                <div class="panel-body">
+                                                    <div class="panel-title">
+                                                        <span class="label pull-right layui-bg-blue">实时</span>
+                                                        <h5>节点名称</h5>
+                                                    </div>
+                                                    <div class="panel-content">
+                                                        <h1 class="no-margins overflow" title='{{>info.Name}}'>{{:info.Name}}</h1>
+                                                        <small>&nbsp;</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md3">
+                                            <div class="panel layui-bg-number" style="margin-bottom: 0px;">
+                                                <div class="panel-body">
+                                                    <div class="panel-title">
+                                                        <span class="label pull-right layui-bg-cyan">实时</span>
+                                                        <h5>操作系统</h5>
+                                                    </div>
+                                                    <div class="panel-content">
+                                                        <h1 class="no-margins overflow" title='{{>info.OperatingSystem}}'>{{:info.OperatingSystem}}</h1>
+                                                        <small class="overflow" title='{{>info.KernelVersion}}'>{{:info.KernelVersion}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="layui-col-md3">
+                                            <div class="panel layui-bg-number" style="margin-bottom: 0px;">
+                                                <div class="panel-body">
+                                                    <div class="panel-title">
+                                                        <span class="label pull-right layui-bg-orange">实时</span>
+                                                        <h5>Docker版本</h5>
+                                                    </div>
+                                                    <div class="panel-content">
+                                                        <h1 class="no-margins overflow" title='{{>version.Version}}'>{{:version.Version}}</h1>
+                                                        <small class="overflow" title='{{>version.Platform.Name}}'>{{:version.Platform.Name}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-col-md3">
+                                            <div class="panel layui-bg-number" style="margin-bottom: 0px;">
+                                                <div class="panel-body">
+                                                    <div class="panel-title">
+                                                        <span class="label pull-right layui-bg-green">实时</span>
+                                                        <h5>Build版本</h5>
+                                                    </div>
+                                                    <div class="panel-content">
+                                                        <h1 class="no-margins overflow" title='{{>version.GoVersion}}'>{{:version.GoVersion}}</h1>
+                                                        <small class="overflow" title='{{>version.ApiVersion}}'>ApiVersion: {{:version.ApiVersion}}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 8-->
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col">
+                        <div class="card card-hoverable  layui-row layui-col-space10">
+                            <div class="cardList-wrapper">
+                                <div class="card-item"  onclick="javascript:triggerNavMenuClick('ALL', 'images')">
+                                    <div class="card-title">配置</div>
+                                    <div class="all-count">
+                                        <span id='configCount'>5</span>
+                                        <span class="suffix">个</span>
+                                    </div>
+                                </div>
+                                <div class="card-item"  onclick="javascript:triggerNavMenuClick('ALL', 'containers')">
+                                    <div class="card-title">服务</div>
+                                    <div class="all-count">
+                                        <span id='ServiceCount'>3</span>
+                                        <span class="suffix">个</span>
+                                    </div>
+                                    <div class="card-info">
+                                        <span>服务副本总数：<t id='ReplicasCount'>20</t>个</span>
+                                    </div>
+                                </div>
+                                <div class="card-item"  onclick="javascript:triggerNavMenuClick('ALL', 'volumes')">
+                                    <div class="card-title">活动任务</div>
+                                    <div class="all-count">
+                                        <span id='TaskCount'>0</span>
+                                        <span class="suffix">个</span>
+                                    </div>
+                                    <div class="card-info">
+                                        <span>任务总数：<t id='TaskTotal'>0</t>个</span>
+                                    </div>
+                                </div>
+                                    <div class="card-item" onclick="javascript:triggerNavMenuClick('ALL', 'Swarm集群', '节点')">
+                                        <div class="card-title">集群节点</div>
+                                        <div class="all-count">
+                                            <span id='activeCount'>1</span>
+                                            <span class="suffix">个</span>
+                                        </div>
+                                        <div class="card-info">
+                                            <span>管理结点：<t id='managerCount'>1</t></span>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  COL 8 -->
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col">
+                        <div class="card card-hoverable">
+                            <div class="card-head">
+                                <span class="card-head-icon"><i class="fa fa-server icon"></i></span>
+                                <span>快捷入口</span>
+                                <span style='float: right;position: absolute;right: 20px;height: 48px;'></span>
+                            </div>
+
+                            <div class="card-body padding-card-body">
+                                <div class="welcome-module"  style='min-height: 10px;'>
+                                    <div class="layui-row layui-col-space10 layuimini-qiuck">
+
+                                        <div class="layui-col-md2 layuimini-qiuck-module">
+                                            <a href="#" onClick="javascript:triggerNavMenuClick('ALL', 'images')" title="配置管理" data-icon="fa fa-window-maximize">
+                                                <i class="fa fa-window-maximize"></i>
+                                                <cite>镜像管理</cite>
+                                            </a>
+                                        </div>
+
+                                        <div class="layui-col-md2 layuimini-qiuck-module">
+                                            <a href="#" onClick="javascript:triggerNavMenuClick('ALL', 'containers')" title="服务管理" data-icon="fa fa-gears">
+                                                <i class="fa fa-gears"></i>
+                                                <cite>容器管理</cite>
+                                            </a>
+                                        </div>
+
+                                        <div class="layui-col-md2 layuimini-qiuck-module">
+                                            <a href="#" onClick="javascript:triggerNavMenuClick('ALL', 'volumes')" title="任务管理" data-icon="fa fa-file-text">
+                                                <i class="fa fa-file-text"></i>
+                                                <cite>数据卷管理</cite>
+                                            </a>
+                                        </div>
+
+                                        <div class="layui-col-md2 layuimini-qiuck-module">
+                                            <a href="#" onClick="javascript:triggerNavMenuClick('ALL', '仓库')"  title="仓库管理" data-icon="fa fa-dot-circle-o">
+                                                <i class="fa fa-dot-circle-o"></i>
+                                                <cite>仓库管理</cite>
+                                            </a>
+                                        </div>
+
+                                        <div class="layui-col-md2 layuimini-qiuck-module">
+                                            <a href="#" onClick="javascript:triggerNavMenuClick('ALL', 'Swarm集群', '集群信息')" title="集群信息" data-icon="fa fa-calendar">
+                                                <i class="fa fa-calendar"></i>
+                                                <cite>集群信息</cite>
+                                            </a>
+                                        </div>
+
+                                        <div class="layui-col-md2 layuimini-qiuck-module">
+                                            <a href="#" onClick="javascript:triggerNavMenuClick('ALL', 'Swarm集群', '服务')" title="服务管理" data-icon="fa fa-hourglass-end">
+                                                <i class="fa fa-hourglass-end"></i>
+                                                <cite>服务管理</cite>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  COL 8 -->
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col">
+                        <div class="card card-hoverable">
+                            <div class="card-head">
+                                <span class="card-head-icon"><i class="fa fa-table icon"></i></span>
+                                <span>资源使用率</span>
+                                <span style='float: right;position: absolute;right: 20px;height: 48px;'></span>
+                            </div>
+                            <div class="card-body padding-card-body" >
+                                <div class="nepadmin-pad-b20">
+                                    <h2 class="nepadmin-pad-b10">
+                                      <t class='cpu-usages-value'>85%</t><span class="nepadmin-font-14 nepadmin-c-gray nepadmin-fr">CPU使用率（<t class='cpu-usages-value'></t><span class="layui-edge layui-edge-top cpu-usages-value" lay-tips="增长" lay-offset="-15"></span>）</span>
+                                    </h2>
+                                    <div class="layui-progress">
+                                      <div class="layui-progress-bar layui-bg-blue cpu-usages" style="width: 85%;"></div>
+                                    </div>
+                              </div>
+                              <div class="nepadmin-pad-b20">
+                                    <h2 class="nepadmin-pad-b10">
+                                      <t class='memory-usages-value'>58%</t><span class="nepadmin-font-14 nepadmin-c-gray nepadmin-fr">内存占用率（<t class='memory-usages-value'></t><span class="layui-edge layui-edge-bottom memory-usages-value" lay-tips="下降" lay-offset="-15"></span>）</span>
+                                    </h2>
+                                    <div class="layui-progress">
+                                      <div class="layui-progress-bar layui-bg-red  memory-usages" style="width: 58%;"></div>
+                                    </div>
+                              </div>
+                              <div class="nepadmin-pad-b20">
+                                    <h2 class="nepadmin-pad-b10">
+                                      <t class='disk-usages-value'>92%</t><span class="nepadmin-font-14 nepadmin-c-gray nepadmin-fr">磁盘占用率（<t class='disk-usages-value'></t><span class="layui-edge layui-edge-bottom disk-usages-value" lay-tips="下降" lay-offset="-15"></span>）</span>
+                                    </h2>
+                                    <div class="layui-progress">
+                                      <div class="layui-progress-bar layui-bg-cyan  disk-usages" style="width: 92%;"></div>
+                                    </div>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  COL 8 -->
+
+            </div>
+
+            <!-- COL 4 -->
+
+            <div class="layui-col-md4">
+                <div class="layui-row layui-col-space10">
+                    <div class="layui-col">
+                        <div class="card card-hoverable">
+                            <div class="card-head">
+                                <span class="card-head-icon"><svg t="1624610578335" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1065" width="100%" height="100%"><path d="M464.904 256.496L467.288 88H91.704v168.496h373.2z m0 0" fill="#76DA91" p-id="1066"></path><path d="M776.968 490.04l4.376-168.496H91.704v168.496h685.264z m0 0" fill="#76DA91" p-id="1067"></path><path d="M617.56 723.584l3.36-168.496H91.704v168.496h525.856z m0 0" fill="#76DA91" p-id="1068"></path><path d="M313.704 957.128l1.416-168.496H91.704v168.496h222z m0 0" fill="#76DA91" p-id="1069"></path><path d="M41.8 975.608V88.144H0V1024h1009.936v-48.392H41.8z m0 0" fill="#76DA91" p-id="1070"></path></svg></span>
+                                <span>SWARM集群概览</span>
+                                <span style='float: right;position: absolute;right: 20px;height: 48px;'></span>
+                            </div>
+                            <div class="card-body" >
+                                <table class="layui-table">
+                                    <colgroup>
+                                        <col width="100">
+                                        <col>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <td>集群状态</td>
+                                        <td>
+                                        <span style="vertical-align: middle;padding-right:30px;">{{:info.swarm.status}}</span>
+                                        <span style="vertical-align: middle;display:inline-block">
+
+                                        {{if info.swarm.status=='Off'}}
+                                        <button type='button' style='float: right;' class="layui-btn-orange layui-btn layui-btn-xs" onclick="openJoinSwarmDlg()">加入</button>
+                                        <button type='button' style='float: right;' class="layui-btn-blue layui-btn layui-btn-xs" onclick="openInitSwarmDlg()">初始化</button>
+                                        {{else}}
+                                        {{if info.Swarm.NodeID}}
+                                        <button type='button' style='float: right;' class="layui-btn-orange layui-btn layui-btn-xs" onclick="openTokenDlg()">令牌</button>
+                                        {{/if}}
+                                        <button type='button' style='float: right;' class="layui-btn-green layui-btn layui-btn-xs" onclick="leaveSwarm()">退出</button>
+                                        {{/if}}
+
+                                        </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>ClusterID</td>
+                                        <td>{{:info.swarm.custerid}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NodeID</td>
+                                        <td>{{:info.swarm.nodeid}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>IP</td>
+                                        <td>{{:info.swarm.address}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>节点名称</td>
+                                        <td>{{:info.Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>产品</td>
+                                        <td>{{:version.Platform.Name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>版本</td>
+                                        <td>{{:version.Version}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>操作系统</td>
+                                        <td>{{:info.OperatingSystem}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>系统内核</td>
+                                        <td>{{:info.KernelVersion}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arch</td>
+                                        <td>{{:info.OSType}} {{:info.Architecture}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Build</td>
+                                        <td>{{:version.GoVersion}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>API</td>
+                                        <td>{{:version.ApiVersion}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CPU</td>
+                                        <td>{{:info.NCPU}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Memory</td>
+                                        <td>{{:info.MemTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RootDir</td>
+                                        <td>{{:info.DockerRootDir}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>仓库镜像</td>
+                                        <td>{{:info.Mirrors}}</td>
+                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td>代理</td>-->
+<!--                                        <td>{{:info.HttpProxy}}</td>-->
+<!--                                    </tr>-->
+
+                                    <tr>
+                                        <td>DOCKERUI</td>
+                                        <td>{{if info.DOCKERUI_MODE==1}}宿主机模式{{else}}独立运行模式{{/if}}</td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COL 4 -->
+
+            </div>
+        </div>
+
+    </div>
+</script>
+<style>
+
+    .panel {width: 100%;!important;}
+</style>
+</body>
+</html>

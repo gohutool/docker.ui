@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <title>正在进入主页</title>
+    <script src="static/common/js/ui.js"></script>
+
+</head>
+<body>
+<form name=loading>
+    　 <p align=center> <font color="#0066ff" size="2">正在进入，请稍等</font><font color="#0066ff" size="2" face="Arial">...</font>
+    　　<input type=text name=chart size=46 style="font-family:Arial; font-weight:bolder; color:#0066ff; background-color:#fef4d9; padding:0px; border-style:none;">
+
+    　 　<input type=text name=percent size=47 style="color:#0066ff; text-align:center; border-width:medium; border-style:none;">
+    　　<script>
+        var stop = false
+        var bar = 0
+        var line = "||"
+        var amount = "||"
+        var isTokenOk = false
+        count()
+
+        let app = new APP({
+            render: function () {
+                stop = true
+                console.log("finish")
+
+                $(function () {
+                    console.log("Jquery is ok")
+                })
+
+                if(isTokenOK()){
+                    isTokenOk = true;
+                }else{
+                    isTokenOk = false;
+                }
+            }
+        });
+
+        function count() {
+            bar = 98
+            bar = bar + 2
+            amount = amount + line
+            document.loading.chart.value = amount
+            document.loading.percent.value = bar + "%"
+            if (!stop) {
+                setTimeout("count()", 100);
+            } else {
+                if(isTokenOk){
+                    window.location = "./main.html";
+                }else{
+                    window.location = "./login.html";
+                }
+
+//window.location = "./html/index";
+            }
+        }</script>
+    　</p>
+</form><p align="center">
+
+    正在进入主页<br/>
+
+    你可以在这里写下你想的一切东西！<br />
+
+    <br /><br />
+
+    如果您的浏览器不支持跳转,<a style="text-decoration: none" href="./html/index"><font color="#FF0000">请点这里</font></a>.</p>
+</body>
+</html>
+<script>
+</script>

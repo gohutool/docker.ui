@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="orchestratorsDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="orchestratorsDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'orchestratorsDg'
+               }">
+
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        createOrchestrators();
+                    },
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-plus'
+                }">编排任务</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                onClick:function(){
+                    updateRepos();
+                },
+                btnCls: 'cubeui-btn-slateblue',
+                iconCls: 'fa fa-tags'
+            }">编辑编排</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        removeOrchestrators();
+                    },
+                    extend: '#orchestratorsDg-toolbar',
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-times'
+                }">删除编排</a>
+
+            <form id="queryForm" class="search-box">
+            <input type="text" name="search_key" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                            console.log(111);
+                            $('#searchbtn').trigger('click');
+                       }, prompt:'根据编排任务名称；进行查询',width:420">
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'orchestratorsDg'}">查询</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="nodemm" data-toggle="cubeui-menu" style="width:120px;display:none" data-options="
+onHide:function(){
+console.log('onHide');
+console.log($(this).menu('options').node);
+$(this).menu('options').node=null;
+}
+">
+    <div id="menuitem01" onclick="openClose()" data-options="iconCls:'fa fa-folder-open-o'">打开连接</div>
+    <div class="menu-sep"></div>
+    <div data-options="iconCls:'fa fa-pencil'" onclick='openEtcd()'>编辑连接...</div>
+    <div data-options="iconCls:'fa fa-plus'">
+        <span>新建连接</span>
+        <div style="width:150px;">
+            <div data-options="iconCls:'fa fa-share-square-o'" onclick='importEtcd()'>导入...</div>
+            <div data-options="iconCls:'fa fa-floppy-o'" onclick='openEtcdAs()'>另存为...</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'fa fa-html5'" onclick='createEtcd()'><b>Etcd数据库...</b></div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'fa fa-print',disabled:true">打印</div>
+        </div>
+    </div>
+    <div data-options="iconCls:'fa fa-trash'" onclick="deleteNode();">删除连接</div>
+    <div data-options="iconCls:'fa fa-clone'" onclick='openEtcdAs()'>复制连接...</div>
+
+    <div data-options="iconCls:'fa fa-reply-all'" onclick="exportEtcd()">导出...</div>
+    <div class="menu-sep"></div>
+    <div data-options="iconCls:'fa fa-refresh'" onclick="refreshNodes()">刷新</div>
+    <div class="menu-sep"></div>
+    <div id="menuitem_snapshot" data-options="iconCls:'fa fa-camera',disabled:true" onclick="snapshot()">导出快照</div>
+    <div class="menu-sep"></div>
+    <div id="menuitem_status" data-options="iconCls:'fa fa-server',disabled:true" onclick="showStatus()">服务器状况</div>
+    <div id="menuitem_version" data-options="iconCls:'fa fa-registered',disabled:true" onclick="showVersion()">版本信息</div>
+</div>
+
+
+<div id="rootMm" data-toggle="cubeui-menu" style="width:120px;display:none" data-options="">
+    <div data-options="iconCls:'fa fa-plus'">
+        <span>新建</span>
+        <div style="width:150px;">
+            <div id='menuitem_service' data-options="iconCls:'fa fa-spinner'" onclick='createService()'>服务</div>
+            <div class="menu-sep"></div>
+            <div id='menuitem_network' data-options="iconCls:'fa fa-usb'" onclick='createNetwork()'>网络</div>
+            <div id='menuitem_volume' data-options="iconCls:'fa fa-database'" onclick='createVolume()'>数据卷</div>
+            <div class="menu-sep"></div>
+            <div id='menuitem_secret' data-options="iconCls:'fa fa-key'" onclick='createEtcd()'>密码文件</div>
+            <div id='menuitem_config' data-options="iconCls:'fa fa-gear'" onclick='createEtcd()'>配置文件</div>
+            <div class="menu-sep"></div>
+            <div id='menuitem_extra' data-options="iconCls:'fa fa-key'" onclick='createEtcd()'>其他项目</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'fa fa-print',disabled:true">打印</div>
+        </div>
+    </div>
+    <div id='menuitem_rename' data-options="iconCls:'fa fa-pencil'" onclick='openEtcd()'>重命名...</div>
+    <div id='menuitem_empty' data-options="iconCls:'fa fa-trash-o'" onclick='openEtcd()'>清空</div>
+</div>
+
+<!-- 表格工具栏结束 -->
+<div id="searchImageMm" data-toggle="cubeui-menu" style="width:120px;display:none" data-options="">
+    <div onclick="setImgFromMenu()" data-options="iconCls:'fa fa-check-square-o'">使用镜像</div>
+</div>
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/api/compose.js",
+                ROOT_RES_URL + '/static/plugins/easyui/treegrid-dnd/treegrid-dnd.js',
+                ROOT_RES_URL + "/orchestrator/orchestrator.js",
+                ROOT_RES_URL + "/orchestrator/panel.js",
+                ROOT_RES_URL + "/orchestrator/build.js",
+            ],
+            render: function () {
+                stop = true
+                console.log("finish")
+                APP.renderBody("#tmpl1", {})
+            }
+        }
+    });
+
+    APP.fn(function(){
+        loadOrchestrators();
+    })
+</script>
+<style>
+    #orchestrator_main_layout #west .tree-icon{
+        margin-top: 8px!important;
+    }
+    #orchestrator_main_layout #west .tree-title {
+        font-size: 13px!important;
+    }
+    #orchestrator_main_layout #west .tree-title {
+        line-height: 16px!important;
+    }
+    #orchestrator_main_layout #west .tree-hit1{
+        display:none
+    }
+    #orchestrator_main_layout #west{
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+    .menu-icon,  .menu-rightarrow{
+        margin-top: -9px!important;
+    }
+</style>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery EasyUI</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="datagrid-scrollview.js"></script>
+	<script>
+		$(function(){
+			var rows = [];
+			for(var i=1; i<=8000; i++){
+				var amount = Math.floor(Math.random()*1000);
+				var price = Math.floor(Math.random()*1000);
+				rows.push({
+					inv: 'Inv No '+i,
+					date: $.fn.datebox.defaults.formatter(new Date()),
+					name: 'Name '+i,
+					amount: amount,
+					price: price,
+					cost: amount*price,
+					note: 'Note '+i
+				});
+			}
+			$('#dg').datagrid('loadData', rows);
+		});
+	</script>
+</head>
+<body>
+	<h1>DataGrid - VirtualScrollView</h1>
+	
+	<table id="dg" class="easyui-datagrid" style="width:700px;height:250px"
+			title="DataGrid - VirtualScrollView"
+			data-options="view:scrollview,rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50">
+		<thead>
+			<tr>
+				<th field="inv" width="80">Inv No</th>
+				<th field="date" width="100">Date</th>
+				<th field="name" width="80">Name</th>
+				<th field="amount" width="80" align="right">Amount</th>
+				<th field="price" width="80" align="right">Price</th>
+				<th field="cost" width="100" align="right">Cost</th>
+				<th field="note" width="110">Note</th>
+			</tr>
+		</thead>
+	</table>
+
+</body>
+</html>

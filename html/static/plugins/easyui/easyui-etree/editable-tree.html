@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery EasyUI</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<script type="text/javascript" src="../../jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="jquery.etree.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#tt').etree({
+				url: 'tree_data.json'
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Editable Tree</h1>
+	<div style="margin-bottom:10px">
+		<a href="#" onclick="javascript:$('#tt').etree('create')">Create</a>
+		<a href="#" onclick="javascript:$('#tt').etree('edit')">Edit</a>
+		<a href="#" onclick="javascript:$('#tt').etree('destroy')">Destroy</a>
+	</div>
+	<ul id="tt"></ul>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<style>
+    .align-center {
+        text-align: center;
+    }
+    .margin-top-10{
+        margin-top: 10px;
+    }
+    .layui-container-fluid {
+        margin: 5px;
+    }
+    .table-label{
+        min-width: 90px!important;
+    }
+    .table-value{
+        word-break:break-all!important;
+    }
+</style>
+
+
+<div class="cubeui-col-sm12 container-termina-body">
+    <div id="container-terminal-{{>ExecID}}" sytle="width:99%;"></div>
+</div>
+
+<!--<div style="background-color: #f7f7f7;" class="cubeui-content-selectable">-->
+<!--    <div class="layui-fluid">-->
+<!--        <table class="layui-table" style="margin: 0px 0;">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th colspan="6" style="text-align: center">{{:Name}} <t>{{if Running==1}}[已启动]{{else}}[已停止]{{/if}}</t> </th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tr>-->
+<!--                <td class="table-label">命令：</td>-->
+<!--                <td colspan="2">{{:Config.CmdStr}}</td>-->
+<!--                {{if Running==1}}-->
+<!--                <td class="table-label">启动时间：</td>-->
+<!--                <td colspan="2">{{:StartAt}}</td>-->
+<!--                {{else}}-->
+<!--                <td class="table-label">停止时间：</td>-->
+<!--                <td colspan="2">{{:FinishAt}}</td>-->
+<!--                {{/if}}-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="table-label">已用空间：</td>-->
+<!--                <td colspan="2">{{:SizeRootFs}}</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="table-label">镜像：</td>-->
+<!--                <td colspan="5">-->
+<!--                    {{:ImageName}} / {{:ImageID}}-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="table-label">端口：</td>-->
+<!--                <td colspan="5">{{:Port?Port:BindingPort}}</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="table-label">数据挂载：</td>-->
+<!--                <td colspan="5">{{:MountStr}}</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--        <table class="layui-table" style="margin: 0px 0;">-->
+<!--            <tr>-->
+<!--                <td class="table-label" colspan="6" >-->
+<!--                    <div class=" container-logs"  style="word-break: break-all;">-->
+
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+<!--    </div>-->
+<!--</div>-->

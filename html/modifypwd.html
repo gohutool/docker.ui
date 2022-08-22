@@ -1,0 +1,44 @@
+<style>
+    .editTable .label {
+        min-width: 80px;
+        width: 80px;
+    }
+</style>
+<table class="editTable">
+    <tr>
+        <td class="label">旧密码</td>
+        <td><input type="text" id="password" name="password" value=""></td>
+    </tr>
+    <tr>
+        <td class="label">新密码</td>
+        <td><input type="text" id="password1" name="password1">
+        </td>
+    </tr>
+    <tr>
+        <td class="label">确认新密码</td>
+        <td><input type="text" id="password2" name="password2"></td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $('#password').iPasswordbox({
+            width: 300,
+            prompt: '旧密码,长度6-12，必须填写',
+            required: true,
+            validType: ['length[6,12]']
+        });
+        $('#password1').iPasswordbox({
+            width: 300,
+            required: true,
+            prompt: '新密码,长度6-12，必须填写',
+            validType: ['length[6,12]']
+        });
+        $('#password2').iPasswordbox({
+            width: 300,
+            prompt: '确认新密码,必须填写和新密码一致',
+            required: true,
+            validType: ['length[6,12]',"equals['#password1']"]
+        });
+    });
+</script>

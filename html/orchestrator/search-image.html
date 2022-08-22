@@ -1,0 +1,60 @@
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="searchImagesDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="searchImagesDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'searchImagesDg'
+               }">
+
+            <form id="queryForm-search" class="search-box">
+<!--                <input data-toggle="cubeui-checkbox" name="is-official" value="1" checked>-->
+<!--                <label class="textbox-label textbox-label-after" style="text-align:left;width: auto;">官方</label>-->
+<!--                <input data-toggle="cubeui-checkbox" name="is-official-not" value="1" checked>-->
+<!--                <label class="textbox-label textbox-label-after" style="text-align:left;width: auto;">非官方</label>-->
+                <label class="textbox-label textbox-label-after" style="text-align:left;width: auto;">官方：</label>
+                <input type="hidden" name="search" value="1"/>
+
+                <input type="text" name="is_official" value="ALL" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:150,
+                                required:true,prompt:'官方标识，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'ALL','TEXT':'所有'},{'KEY':'YES','TEXT':'仅官方镜像'},{'KEY':'NO','TEXT':'仅非官方镜像'}]
+                       ">
+
+                <label class="textbox-label textbox-label-after" style="text-align:left;width: auto;">自动：</label>
+                <input type="text" name="is_automated" value="ALL" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:150,
+                                required:true,prompt:'自动标识，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'ALL','TEXT':'所有'},{'KEY':'YES','TEXT':'仅自动镜像'},{'KEY':'NO','TEXT':'仅非自动镜像'}]
+                       ">
+                <label class="textbox-label textbox-label-after" style="text-align:left;width: auto;">星数：</label>
+                <input type="text" name="stars" value="" data-toggle="cubeui-numberspinner"
+                       data-options="
+                                width:120,
+                                min:0,
+                                required:false,prompt:'达到星数',
+                       ">
+                <label class="textbox-label textbox-label-after" style="text-align:left;width: auto;">过滤条件：</label>
+                <input type="text" name="term" value="{{:imageName}}" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                       }, mask:'{{:~js(prefix)}}', required:true,prompt:'例如 docker-ui ',width:240">
+                <a href="javascript:void(0)" id="searchbtn2"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm-search'},
+                   grid:{type:'datagrid','id':'searchImagesDg'}">查询</a>
+            </form>
+        </div>
+    </div>
+</div>

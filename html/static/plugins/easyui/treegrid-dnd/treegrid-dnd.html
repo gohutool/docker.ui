@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery EasyUI</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<script type="text/javascript" src="../../jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="treegrid-dnd.js"></script>
+	<script type="text/javascript">
+		var data = [{
+			"id":1,
+			"name":"C",
+			"size":"",
+			"date":"02/19/2010",
+			"children":[{
+				"id":2,
+				"name":"Program Files",
+				"size":"120 MB",
+				"date":"03/20/2010",
+				"children":[{
+					"id":21,
+					"name":"Java",
+					"size":"",
+					"date":"01/13/2010",
+					"state":"closed",
+					"children":[{
+						"id":211,
+						"name":"java.exe",
+						"size":"142 KB",
+						"date":"01/13/2010"
+					},{
+						"id":212,
+						"name":"jawt.dll",
+						"size":"5 KB",
+						"date":"01/13/2010"
+					}]
+				},{
+					"id":22,
+					"name":"MySQL",
+					"size":"",
+					"date":"01/13/2010",
+					"state":"closed",
+					"children":[{
+						"id":221,
+						"name":"my.ini",
+						"size":"10 KB",
+						"date":"02/26/2009"
+					},{
+						"id":222,
+						"name":"my-huge.ini",
+						"size":"5 KB",
+						"date":"02/26/2009"
+					},{
+						"id":223,
+						"name":"my-large.ini",
+						"size":"5 KB",
+						"date":"02/26/2009"
+					}]
+				}]
+			},{
+				"id":3,
+				"name":"eclipse",
+				"size":"",
+				"date":"01/20/2010",
+				"children":[{
+					"id":31,
+					"name":"eclipse.exe",
+					"size":"56 KB",
+					"date":"05/19/2009"
+				},{
+					"id":32,
+					"name":"eclipse.ini",
+					"size":"1 KB",
+					"date":"04/20/2010"
+				},{
+					"id":33,
+					"name":"notice.html",
+					"size":"7 KB",
+					"date":"03/17/2005"
+				}]
+			}]
+		}]
+	</script>
+</head>
+<body>
+	<h1>Drag and Drop Rows in TreeGrid</h1>
+	<table title="Folder Browser" class="easyui-treegrid" style="width:700px;height:250px"
+			data-options="
+				data: data,
+				rownumbers: true,
+				idField: 'id',
+				treeField: 'name',
+				onLoadSuccess: function(row){
+					$(this).treegrid('enableDnd', row?row.id:null);
+				}
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'name'" width="220">Name</th>
+				<th data-options="field:'size'" width="150" align="right">Size</th>
+				<th data-options="field:'date'" width="200">Modified Date</th>
+			</tr>
+		</thead>
+	</table>
+</body>
+</html>

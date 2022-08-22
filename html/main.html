@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <script src="./static/common/js/ui.js"></script>
+    <title>DockerUI power by joinsunsoft</title>
+
+</head>
+
+
+<body>
+
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+
+<script id="mainTmpl1" type="text/x-jquery-tmpl">
+<div style="display:none" id="mm" class="submenubutton" style="width: 140px;">
+    <div id="mm-tabclose" name="6" iconCls="fa fa-refresh">刷新</div>
+    <div class="menu-sep"></div>
+    <div id="Div1" name="1" iconCls="fa fa-close">关闭</div>
+    <div id="mm-tabcloseother" name="3">关闭其他</div>
+    <div id="mm-tabcloseall" name="2">关闭全部</div>
+    <div class="menu-sep"></div>
+    <div id="mm-tabcloseright" name="4">关闭右侧标签</div>
+    <div id="mm-tabcloseleft" name="5">关闭左侧标签</div>
+    <div class="menu-sep"></div>
+    <div id="mm-newwindow" name="7">新窗口中打开</div>
+</div>
+
+<div data-toggle="cubeui-layout"
+     data-options="id:'index_layout',fit:true">
+    <div id="north" class="banner"
+         data-options="region:'north',border:false,split:false"
+         style="height: 70px; padding: 0; margin: 0; overflow: hidden;">
+        <table style="float: left; border-spacing: 0px;height:70px">
+            <tr>
+                <td class="webname" style="width:240px;font-size:15px;">
+                    <img style="font-size:26px; padding-right:8px;height:28px"
+                         src="./static/cubeui/images/cube.png"></img>
+                    DockerUI</td>
+                <td class="collapseMenu"
+                    style="text-align: center; cursor: pointer;"><span
+                        class="fa fa-chevron-circle-left" style="font-size: 18px;"></span>
+                </td>
+                <td>
+                    <table id="topmenucontent" cellpadding="0" cellspacing="0">
+                        <tr>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <span
+                style="float:right; padding-right: 10px; height: 70px; line-height: 70px;">
+
+            <a href="javascript:showEvent()"
+                data-toggle="cubeui-menubutton"
+                data-options="iconCls:'fa fa-bell',hasDownArrow:false"
+                style="color: #fff;outline: unset;">事件<span style='margin-left: 2px;' class="title-event layui-badge layui-bg-red">0</span></a>
+
+            <a href="javascript:void(0)"
+                id="mb3" data-toggle="cubeui-menubutton"
+                data-options="menu:'#mm3',iconCls:'fa fa-cog',hasDownArrow:true"
+                style="color: #fff;outline: unset;">设置</a>
+				<div id="mm3" style="width: 74px;">
+					<div data-options="iconCls:'fa fa-key'"
+                         onclick="javascript:modifyUserPwd(0)">修改密码</div>
+				</div>|
+				<a href="javascript:void(0)" onclick="logout()"
+                          data-toggle="cubeui-menubutton"
+                          data-options="iconCls:'fa fa-sign-out',hasDownArrow:false"
+                          style="color: #fff;">注销</a>
+			</span>
+    </div>
+
+    <div id="west"
+         data-options="region:'west',split:true,width:250,border:false,headerCls:'border_right',bodyCls:'border_right'"
+         title="" iconCls="fa  fa-object-ungroup">
+        <div id="RightAccordion"></div>
+<!--        <table id='databaseDg'>-->
+<!--        </table>-->
+    </div>
+
+<!--    <div id="east111"-->
+<!--         data-options="title:'123',collapsedSize:0,region:'east',split:true,width:250,border:false,split:false,collapsed:true"-->
+<!--         title="123" iconCls1="fa  fa-object-ungroup">-->
+<!--         123123123-->
+<!--    </div>-->
+
+    <div id="center" data-options="region:'center',border:false"
+         style="overflow: hidden;">
+        <div id="index_tabs" style="width: 100%; height: 100%">
+            <div title="概览<span class='title-summary layui-badge layui-badge-dot'></span>" iconCls="fa fa-windows"
+                 data-options="border:true,iframe:true,
+            content:'<iframe src=\'./portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'"></div>
+        </div>
+    </div>
+
+    <div data-options="region:'south',border:true"
+         style="text-align: center; height: 30px; line-height: 30px; border-bottom: 0; overflow: hidden;">
+			<span
+                    style="float: left; padding-left: 5px; width: 30%; text-align: left;">当前用户：<block
+                    class="currentuserinfo">David.Liu</block></span>
+        <span style="padding-right: 5px; width: 40%"> 版权所有 © 2018 <b>锦翰科技（深圳）有限公司</b>  <a
+                href="http://www.joinsunsoft.com" target="_blank"></a>
+				<a href="http://www.beian.miit.gov.cn" target="_blank"> 粤ICP备16033069号</a>
+			</span> <span
+            style="float: right; padding-right: 5px; width: 30%; text-align: right;"><span id='versioninfo'>版本：v.1.0.22</span>  <a
+            href="javascript:void(0);"
+            onclick="show_term();">《条款说明》</a></span>
+    </div>
+</div>
+
+<!--[if lte IE 8]>
+<div id="ie6-warning">
+    <p>
+
+        您正在使用低版本浏览器，在本页面可能会导致部分功能无法使用，建议您升级到
+        <a href='http://www.microsoft.com/china/windows/internet-explorer/' target='_blank'>IE9或以上版本的浏览器</a>
+        或使用<a href='http://se.360.cn/' target='_blank'>360安全浏览器</a>的极速模式浏览
+
+    </p>
+</div>
+<![endif]-->
+
+</script>
+</body>
+
+<table id="template001" style="display:none">
+    <tr>
+        <td title=""
+            class="topmenu systemName" style="border-right:0px;min-width:110px"><a
+                class="l-btn-text bannerMenu"
+                style="text-decoration-line:none" href="javascript:void(0)">
+            <p class="label001" style="color1: #F7B824;padding: 15px 2px 5px 2px; ">
+                <lable class="fa"></lable>
+            </p>
+            <p class="title001">
+                <span style="white-space: nowrap;"></span>
+            </p>
+        </a></td>
+    </tr>
+</table>
+
+<script>
+
+    new APP(function(){
+        return {
+            css: [
+                ROOT_RES_URL + "/static/module/index.css",
+            ],
+            js: [
+                ROOT_RES_URL + "/static/module/index.js",
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/main.js",
+            ],
+            render: function () {
+
+                if (!isTokenOK()) {
+                    $.app.alert("登录已经无效，重新登录", function(){
+                        window.location = "./login.html";
+                    })
+                    return
+                }
+
+                stop = true
+                console.log("finish")
+
+                APP.renderBody("#mainTmpl1", {id:"1022", name:"davidliu"})
+
+                //loadTreeDg()
+                initMenu()
+
+                monitorEvent();
+            }
+        }
+    });
+
+    function openDebugMode(){
+        console.log("debug");
+        openDebugDg()
+    }
+
+    function monitorEvent(){
+        $.docker.request.system.event(function (chunk, xhr, state) {
+            console.log("Docker Event")
+            console.log(xhr)
+
+            if(!$.extends.isEmpty(chunk)){
+
+                console.log(chunk)
+
+                let a = $('.title-event').text()
+                if($.extends.isEmpty(a))
+                    a = 0;
+
+                $('.title-event').text(a*1 + chunk.length)
+
+                try{
+                    let json = $.extends.json.toobject2(chunk)
+
+                    //$.app.show('收到{0}事件:{1}'.format(json.Type, json.Action, new Date(json.timeNano/1000000).pattern('yyyy-MM-dd HH:mm:ss')))
+
+                }catch (e) {
+                    console.log('Parse event error ' + e)
+                }
+            }
+        }, local_node, function(){
+
+        }, function (xhr, status) {
+            $.app.show('事件监控退出，5秒后重新建立监控事件.....');
+            $.easyui.thread.sleep(function (){
+                monitorEvent()
+            }, 5000)
+        })
+    }
+
+    function showEvent(){
+       //$('#index_layout').layout('expand','east');
+    }
+
+
+</script>
+<style>
+    body{
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+</style>
+
+</html>

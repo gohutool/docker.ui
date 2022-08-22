@@ -1,0 +1,97 @@
+<div style="margin: 0px;">
+</div>
+
+<div class="cubeui-fluid">
+    <fieldset>
+        <legend>数据卷信息</legend>
+    </fieldset>
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">数据卷:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-textbox" name="Name"
+                       value='{{:Name}}'
+                       data-options="
+                                required:true,prompt:'数据卷，必须填写'
+                                "
+                >
+            </div>
+        </div>
+    </div>
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">数据卷驱动:</label>
+            <div class="cubeui-input-block">
+                <input type="text" name="Driver" value="local" data-toggle="cubeui-combobox"
+                       data-options="
+                                limitToList:true,
+                                required:true,prompt:'数据卷驱动，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:$.docker.utils.getLocalVolume()
+                       ">
+            </div>
+        </div>
+    </div>
+
+    <fieldset>
+        <legend style="margin-bottom: 0px;">驱动选项</legend>
+    </fieldset>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12 add-opt-div">
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                    <span style='line-height: 20px;padding-right:0px;'>选项</span>
+                </div>
+                <div class="cubeui-col-sm5" >
+                    <span style='line-height: 20px;padding-right:0px;'>值</span>
+                </div>
+                <div class="cubeui-col-sm1" style="text-align: center">
+                        <span style='line-height: 20px;padding-right:0px;'>
+                            <span onClick="$.docker.utils.ui.addOpts(this,'driver-opt')" class="ops-fa-icon fa fa-plus" style="font-size:14px!important;">&nbsp;</span>
+                        </span>
+                </div>
+            </div>
+            <!--            <div class="cubeui-row">-->
+            <!--                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">-->
+            <!--                    <input type="text" data-toggle="cubeui-textbox"-->
+            <!--                           value='{{:lease}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">-->
+            <!--                </div>-->
+            <!--                <div class="cubeui-col-sm5">-->
+            <!--                    <input type="text" data-toggle="cubeui-textbox"-->
+            <!--                           value='{{:lease}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">-->
+            <!--                </div>-->
+            <!--                <div class="cubeui-col-sm1" style="text-align: center">-->
+            <!--                    <span style='line-height: 30px;padding-right:0px;'><span class="ops-fa-icon fa fa-close" style="font-size:14px!important;">&nbsp;</span></span>-->
+            <!--                </div>-->
+            <!--            </div>-->
+        </div>
+    </div>
+
+
+    <fieldset>
+        <legend style="margin-bottom: 0px;">标签选项</legend>
+    </fieldset>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12 add-opt-div">
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                    <span style='line-height: 20px;padding-right:0px;'>标签</span>
+                </div>
+                <div class="cubeui-col-sm5" >
+                    <span style='line-height: 20px;padding-right:0px;'>值</span>
+                </div>
+                <div class="cubeui-col-sm1" style="text-align: center">
+                        <span style='line-height: 20px;padding-right:0px;'>
+                            <span onClick="$.docker.utils.ui.addOpts(this, 'label')"  class="ops-fa-icon fa fa-plus" style="font-size:14px!important;">&nbsp;</span>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

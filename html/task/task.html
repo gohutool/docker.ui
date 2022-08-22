@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+
+<div id='tasklist-layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="tasksDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="tasksDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'tasksDg'
+               }">
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                            onClick:function(){
+                                refreshTasks();
+                            },
+                            extend: '#relatedTasksDg-toolbar',
+                            btnCls: 'cubeui-btn-orange',
+                            iconCls: 'fa fa-refresh'
+                        }">刷新</a>
+
+            <form id="queryForm" class="search-box">
+
+                <div id='dg_header' style="display1:none;margin-bottom1:15px">
+                        <span style='line-height: 30px;padding-right:0px' title="">模式：</span>
+                        <input type="text" id="service_mode" value="" data-toggle="cubeui-combobox"
+                               data-options="
+                                        width:160,
+                                        required:false,prompt:'为空，查询所有',
+                                        valueField:'KEY',
+                                        textField:'TEXT',
+                                        data:[{'KEY':'','TEXT':'所有'},{'KEY':'replicated','TEXT':'replicated'},{'KEY':'global','TEXT':'global'}]
+                               ">
+
+                        <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+
+                        <input type="text" id='service_search_type' value="name" data-toggle="cubeui-combobox"
+                               data-options="
+                                        width:120,
+                                        required:true,prompt:'查询方式，必须填写',
+                                        valueField:'KEY',
+                                        textField:'TEXT',
+                                        data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'Label'},
+                                        {'KEY':'id','TEXT':'ID'}]
+                               ">
+                        <input type="text" id='service_search_key' data-toggle="cubeui-textbox"
+                               data-options="onClear:function(){
+                                    $('#service_searchbtn').trigger('click');
+                               }, prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+                        <a href="javascript:void(0)" id="service_searchbtn"
+                           data-toggle="cubeui-menubutton"
+                           data-options="
+                           iconCls:'fa fa-search',
+                           btnCls:'cubeui-btn-blue',
+                           onClick:function(){
+                                let param = {};
+
+                                param.mode = $('#service_mode').combobox('getValue');
+                                param.search_type = $('#service_search_type').combobox('getValue');
+                                param.search_key = $('#service_search_key').textbox('getValue');
+
+                                $('#tasklist-service').combogrid('grid').datagrid('reload',param)
+                           }
+                           ">查询</a>
+                </div>
+
+                <span style='line-height: 30px;padding-right:0px' title="">服务：</span>
+                <input type="text" id="tasklist-service" name="service" value="" data-toggle="cubeui-combogrid"
+                       data-options="
+                                   width: 200,
+                                   required:false,
+                                   reversed:true,
+                                   editable:false,
+                                   panelHeight:400,
+                                   panelWidth:800,
+                                   idField:'ID',
+                                   textField:'Name',
+                                   pagination:true,
+                                   queryParams:{all:1},
+                                   toolbar:'#dg_header',
+                                   sortOrder:'asc',
+                                   sortName:'Id',
+                                   pageSize:50,
+                                   queryParams:{all1:1},
+                                   prompt:'服务节点，选择填写',
+                                   onBeforeLoad:function (param){
+                                        refreshAllServices(param)
+                                   },
+                                    frozenColumns:[[
+                                        {field: 'Name', title: 'NAME', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 160},
+                                        {field: 'Id', title: 'SERVICEID', sortable: true,
+                                            width: 260},
+                                    ]],
+                                   columns:[[
+                                       {field: 'Image', title: 'IMAGE', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 150},
+                                        {field: 'Mode', title: 'MODE', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 100},
+                                        {field: 'ReplicaStr', title: 'REPLICAS', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 80},
+                                        {field: 'NetworkStr', title: 'NETWORKS', sortable: true,
+                                            formatter:networksFormatter,width: 140},
+                                        {field: 'NWMode', title: 'NW Mode', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 100},
+                                        {field: 'PortStr', title: 'PORTS', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 200},
+                                        {field: 'SVersion', title: 'Raft', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 80},
+                                        {field: 'Created', title: 'CREATED', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 170},
+                                        {field: 'Updated', title: 'UPDATED', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 170},
+                                        {field: 'LabelStr', title: 'LABELS', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 900},
+                                   ]]
+                               ">
+
+                <span style='line-height: 30px;padding-right:0px' title="">节点：</span>
+                <div id='dg_node_header' style="display1:none;margin-bottom1:15px">
+                    <input type="text" id="node_search_role" value="" data-toggle="cubeui-combobox"
+                           data-options="
+                                    width:160,
+                                    required:false,prompt:'为空，查询所有',
+                                    valueField:'KEY',
+                                    textField:'TEXT',
+                                    data:[{'KEY':'all','TEXT':'所有'},{'KEY':'manager','TEXT':'管理节点'},{'KEY':'worker','TEXT':'工作节点'}]
+                           ">
+
+                    <span style='line-height: 30px;padding-right:0px'>成员身份：</span>
+                    <input type="text" id="node_search_membership" value="" data-toggle="cubeui-combobox"
+                           data-options="
+                                    width:160,
+                                    required:false,prompt:'为空，查询所有',
+                                    valueField:'KEY',
+                                    textField:'TEXT',
+                                    data:[{'KEY':'all','TEXT':'所有'},{'KEY':'accepted','TEXT':'已经接受'},{'KEY':'pending','TEXT':'待定中'}]
+                           ">
+
+                    <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+                    <input type="text" id='node_search_type' value="name" data-toggle="cubeui-combobox"
+                           data-options="
+                                    width:120,
+                                    required:true,prompt:'查询方式，必须填写',
+                                    valueField:'KEY',
+                                    textField:'TEXT',
+                                    data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'引擎Label'},{'KEY':'node.label','TEXT':'节点Label'},
+                                    {'KEY':'id','TEXT':'ID'}]
+                           ">
+                    <input type="text" id='node_search_key' data-toggle="cubeui-textbox"
+                           data-options="onClear:function(){
+                                $('#node_searchbtn').trigger('click');
+                           }, prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+                    <a href="javascript:void(0)" id="node_searchbtn"
+                       data-toggle="cubeui-menubutton"
+                       data-options="
+                       iconCls:'fa fa-search',
+                       btnCls:'cubeui-btn-blue',
+                       onClick:function(){
+                            let param = {};
+
+                            param.role = $('#node_search_role').combobox('getValue');
+                            param.membership = $('#node_search_membership').combobox('getValue');
+                            param.search_type = $('#node_search_type').combobox('getValue');
+                            param.search_key = $('#node_search_key').textbox('getValue');
+
+                            $('#tasklist-node').combogrid('grid').datagrid('reload',param)
+                       }
+                       ">查询</a>
+                </div>
+                <input type="text" id='tasklist-node' name="nodeid" value="" data-toggle="cubeui-combogrid"
+                       data-options="
+                                   width: 200,
+                                   required:false,
+                                   reversed:true,
+                                   editable:false,
+                                   panelHeight:400,
+                                   panelWidth:800,
+                                   idField:'ID',
+                                   textField:'Hostname',
+                                   pagination:true,
+                                   queryParams:{all:1},
+                                   toolbar:'#dg_node_header',
+                                   sortOrder:'asc',
+                                   sortName:'Id',
+                                   pageSize:50,
+                                   queryParams:{all1:1},
+                                   required:false,
+                                   prompt:'查询节点，选择填写',
+                                   onBeforeLoad:function (param){
+                                        refreshAllNodes(param)
+                                   },
+                                   frozenColumns:[[
+                                    {field: 'Hostname', title: 'NODE', sortable: true,
+                                        formatter:$.iGrid.tooltipformatter(),
+                                        width: 140},
+                                    {field: 'Id', title: 'NODE ID', sortable: true,
+                                        formatter:$.iGrid.buildformatter([$.iGrid.templateformatter('{Id}'), $.iGrid.tooltipformatter()]),
+                                        width: 220},
+                                    {field: 'Addr', title: 'Addr', sortable: true,
+                                        formatter:$.iGrid.tooltipformatter(),
+                                        width: 130}
+                                   ]],
+                                    onBeforeLoad:function (param){
+                                        refreshAllNodes(param)
+                                    },
+                                    columns: [[
+                                        {field: 'StatuStr', title: 'Status', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 100},
+                                        {field: 'Name', title: 'NAME', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 140},
+                                        {field: 'RoleStr', title: 'Role', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 100},
+                                        {field: 'MAddrStr', title: 'ADVERTISE', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 210},
+                                        {field: 'Created', title: 'CREATED', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 170},
+                                        {field: 'Updated', title: 'UPDATED', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),
+                                            width: 170},
+                                        {field: 'Platform', title: 'OS', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 120},
+                                        {field: 'EVersion', title: '版本', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 100},
+                                        {field: 'CPUs', title: 'CPUS', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 60},
+                                        {field: 'MemoryBytes', title: '内存', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 80},
+                                        {field: 'SVersion', title: '节点版本', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 80},
+                                        {field: 'LabelStr', title: 'LABELS', sortable: true,
+                                            formatter:$.iGrid.tooltipformatter(),width: 900}
+                                    ]]
+                               ">
+
+                <span style='line-height: 30px;padding-right:0px' title="">状态：</span>
+                <input type="text" id="tasklist-desired-state" name="desired-state" value="running" data-toggle="cubeui-combobox"
+                       data-options="
+                                        width:160,
+                                        required:false,prompt:'为空，查询所有',
+                                        valueField:'KEY',
+                                        textField:'TEXT',
+                                        onClear:function(){
+                                            $('#searchbtn').trigger('click');
+                                        },
+                                        data:[{'KEY':'','TEXT':'所有'},{'KEY':'running','TEXT':'Running'},{'KEY':'shutdown','TEXT':'Shutdown'},
+                                        {'KEY':'accepted','TEXT':'Accepted'}]
+                               ">
+
+                <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+                <input type="text" id='tasklist-search_type' name="search_type" value="name" data-toggle="cubeui-combobox"
+                       data-options="
+                                        width:120,
+                                        required:true,prompt:'查询方式，必须填写',
+                                        valueField:'KEY',
+                                        textField:'TEXT',
+                                        data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'Label'},
+                                        {'KEY':'id','TEXT':'Id'}]
+                               ">
+                <input type="text" id='tasklist-search_key' name="search_key" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                                    $('#searchbtn').trigger('click');
+                               }, prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'tasksDg'}">查询</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/task/task.js",
+                ROOT_RES_URL + "/logs/logs.js",
+            ],
+            render: function () {
+                stop = true
+                console.log("finish")
+                APP.renderBody("#tmpl1", {})
+                refreshImageAndContainerInfo()
+
+                // let t = $.templates("#tmpl1").render({id:"1022", name:"davidliu"})
+                // $('body div').remove()
+                // $(t).appendTo($('body'))
+            }
+        }
+    });
+
+
+    APP.fn(function(){
+        loadLease();
+    })
+</script>
+</html>

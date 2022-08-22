@@ -1,0 +1,47 @@
+<div data-toggle="cubeui-layout"
+     data-options="id:'orchestrator_main_layout'" id="orchestrator_main_layout" style="height: 100%">
+    <div id="west"
+         data-options="region:'center',split:true,border:false,headerCls:'border_right',bodyCls:'border_right'"
+         title1="&emsp;Etcd服务节点" iconCls="fa  fa-object-ungroup">
+        <table id='composeDg'>
+        </table>
+        <div id="composeDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'treegrid',
+                   id:'composeDg'
+               }">
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick: function(){
+                        $('#composeDg').treegrid('expandAll');
+                    },
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-database '
+               }">展开所有</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick: function(){
+                        $('#composeDg').treegrid('collapseAll');
+                    },
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-database '
+               }">收起所有</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick: function(){
+                        $('#composeDg').treegrid('collapseAll');
+                    },
+                    btnCls: 'cubeui-btn-orange',
+                    iconCls: 'fa fa-save '
+               }">保存编排</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick: function(){
+                        $('#layout').layout('collapse', 'east');
+                    },
+                        btnCls: 'cubeui-btn-slateblue',
+                    iconCls: 'fa fa-save '
+               }">退出编辑</a>
+        </div>
+    </div>
+</div>

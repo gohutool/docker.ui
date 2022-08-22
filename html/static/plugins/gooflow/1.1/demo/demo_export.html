@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>流程图-导出图片</title>
+    <!--[if lt IE 9]>
+    <?import namespace="v" implementation="#default#VML" ?>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../codebase/GooFlow.css"/>
+    <script type="text/javascript" src="data2.js"></script>
+    <script type="text/javascript" src="../plugin/jquery.min.js"></script>
+    <script type="text/javascript" src="../codebase/GooFunc.js"></script>
+    <script type="text/javascript" src="../plugin/json2.js"></script>
+    <link rel="stylesheet" type="text/css" href="default.css"/>
+    <script type="text/javascript" src="../codebase/GooFlow.js"></script>
+    <script type="text/javascript" src="../codebase/GooFlow.color.js"></script>
+
+    <script type="text/javascript" src="../plugin/promise.min.js"></script>
+    <script type="text/javascript" src="../plugin/html2canvas.min.js"></script>
+    <!--[if lte IE 11]-->
+    <script type="text/javascript" src="../plugin/canvg.js"></script>
+    <!--[endif]-->
+    <script type="text/javascript" src="../codebase/GooFlow.export.js"></script>
+
+    <script type="text/javascript">
+       var property={
+            width:1200,
+            height:540,
+            toolBtns:["start round mix","end round","task","node","chat","state","plug","join","fork","complex mix"],
+            haveHead:true,
+            headLabel:true,
+            headBtns:["new","open","save","undo","redo","reload","print"],//如果haveHead=true，则定义HEAD区的按钮
+            haveTool:true,
+            haveGroup:true,
+            useOperStack:true
+        };
+        var remark={
+            cursor:"选择指针",
+            direct:"结点连线",
+            start:"入口结点",
+            "end":"结束结点",
+            "task":"任务结点",
+            node:"自动结点",
+            chat:"决策结点",
+            state:"状态结点",
+            plug:"附加插件",
+            fork:"分支结点",
+            "join":"联合结点",
+            "complex":"复合结点",
+            group:"组织划分框编辑开关"
+        };
+        var demo;
+        $(function(){
+            demo=$.createGooFlow($("#demo"),property);
+            demo.setNodeRemarks(remark);
+            demo.loadData(jsondata);
+
+            //以下是测试导出图片功能
+//            demo.onPrintClick=function(){
+//                //0.添加临时元素
+//                $("body").append('<div id="demo_export" style="position:absolute;top:0;left:0;z-index:-1;width:0px;height:0px;overflow:hidden">'
+//                    +'<div style="color:#15428B;position:absolute;left:0;right:0;width:1160px;height:507px;overflow:hidden;float:none;" class="GooFlow GooFlow_work"></div>'
+//                    +'</div>');
+//
+//                //1.先COPY节点和区块的内容
+//                var inner = $("#demo").find(".GooFlow_work_inner");
+//                var divCanvas = $("#demo_export").children("div:eq(0)");
+//                //复制节点的内容
+//                inner.children("div").each(function(i){
+//                    var item=$(this);
+//                    if(item.hasClass("GooFlow_item")){
+//                        item.clone().removeAttr("id").css("position","absolute").appendTo(divCanvas);
+//                    }else if(item.hasClass("GooFlow_work_group")){
+//                        item.clone().removeAttr("id").css("position","absolute")
+//                            .attr("xmlns",'http://www.w3.org/1999/xhtml').appendTo(divCanvas);
+//                    }
+//                });
+//                html2canvas(divCanvas[0], {
+//                    allowTaint: false, taintTest: false,
+//                    onrendered: function(canvas) {
+//                        //2.在回调方法中，COPY连线内容
+//                        //造出临时的IMAGE
+//                        var context = canvas.getContext('2d');//取得画布的2d绘图上下文
+//                        context.save();
+//                        var strSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="507">'
+//                                +'<defs><style type="text/css">text{font-size:14px;line-height:1.42857143;'
+//                                +'font-family:"Microsoft Yahei", "Helvetica Neue", Helvetica, Hiragino Sans GB, WenQuanYi Micro Hei, Arial, sans-serif;'
+//                                +'}</style></defs>' + window.$("<svg>").append(window.$("#draw_demo").clone()).html() +'</svg>'; //COPY连线内容
+//                        var image = null;
+//                        if(!!window.ActiveXObject || "ActiveXObject" in window){//当为IE11及以下版本浏览器时，使用Canvg第三方工具
+//                            image = document.createElement('canvas');
+//                            canvg(image, strSvg);
+//                        }else{
+//                            var image = new Image();
+//                            image.src='data:image/svg+xml,'+ encodeURIComponent(strSvg);
+//                        }
+//                        var tempFunc=function(){
+//                           context.drawImage(image, 0, 0);
+//                            //清除不需要的临时DOM
+//                            $("#demo_export").empty().remove();
+//                            try{
+//                                var blob = canvas.msToBlob();
+//                                //alert("blob2");
+//                                navigator.msSaveBlob(blob, "prettyImage.png");
+//                            }
+//                            catch(e){
+//                                //生成一个下载链接并点击
+//                                var a = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+//                                a.href = canvas.toDataURL('image/png');  //将画布内的信息导出为png图片数据
+//                                a.download = "prettyImage.png";  //设定下载名称
+//                                document.body.appendChild(a);
+//                                a.click(); //点击触发下载
+//                                document.body.removeChild(a);
+//                            }
+//                        }
+//
+//                        if(image.complete|| (!!window.ActiveXObject || "ActiveXObject" in window)) { // 如果图片已经存在于浏览器缓存，直接调用回调函数
+//                            console.log("aaa");
+//                            tempFunc();
+//                            return;// 直接返回，不用再处理onload事件
+//                        }
+//                        image.onload=function(){
+//                            console.log("ccc");
+//                            tempFunc();
+//                        };
+//                    },
+//                    width: 1160,
+//                    height: 507
+//                });
+//            }
+            demo.onPrintClick=function(){demo.exportDiagram("fuckyou");}
+            //导出图片功能 END
+        });
+    </script>
+</head>
+<body>
+<div id="demo" style="margin:10px"></div>
+<!--demo.$workArea.width(),demo.$workArea.height(),-->
+<div id="fff"></div>
+</body>
+</html>

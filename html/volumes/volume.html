@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="volumesDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="volumesDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'volumesDg'
+               }">
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    method1: 'openDialog',
+                    onClick:function(){
+                        addLease();
+                    },
+                    extend: '#volumesDg-toolbar',
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-plus'
+                }">新增数据卷</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        removeLease();
+                    },
+                    extend: '#volumesDg-toolbar',
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-times'
+                }">删除数据卷</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        emptyLease();
+                    },
+                    extend: '#imagesDg-toolbar',
+                    btnCls: 'cubeui-btn-brown',
+                    iconCls: 'fa fa-trash'
+                }">清理数据卷</a>
+
+
+            <form id="queryForm" class="search-box">
+                <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+
+                <input type="text" id='search_type' name="search_type" value="name" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:120,
+                                required:true,prompt:'查询方式，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'Label'},
+                                {'KEY':'dangling','TEXT':'Dangling'}]
+                       ">
+                <input type="text" id='search_key' name="search_key" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                            console.log(111);
+                            $('#searchbtn').trigger('click');
+                       }, mask:'{{:~js(prefix)}}', prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'volumesDg'}">查询</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<template id='addVolumeTpl'>
+<form id='addVolumeForm'>
+    <div style="margin: 0px;">
+    </div>
+
+    <div class="cubeui-fluid">
+        <fieldset>
+            <legend>数据卷信息</legend>
+        </fieldset>
+        <div class="cubeui-row">
+            <div class="cubeui-col-sm12">
+                <label class="cubeui-form-label">数据卷:</label>
+                <div class="cubeui-input-block">
+                    <input type="text" data-toggle="cubeui-textbox" name="Name"
+                           value='{{:Name}}'
+                           data-options="
+                                required:true,prompt:'数据卷，必须填写'
+                                "
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="cubeui-row">
+            <div class="cubeui-col-sm12">
+                <label class="cubeui-form-label">数据卷驱动:</label>
+                <div class="cubeui-input-block">
+                    <input type="text" name="Driver" value="local" data-toggle="cubeui-combobox"
+                           data-options="
+                                limitToList:true,
+                                required:true,prompt:'数据卷驱动，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:$.docker.utils.getLocalVolume()
+                       ">
+                </div>
+            </div>
+        </div>
+
+        <fieldset>
+            <legend style="margin-bottom: 0px;">驱动选项</legend>
+        </fieldset>
+
+        <div class="cubeui-row">
+            <div class="cubeui-col-sm12 add-opt-div">
+                <div class="cubeui-row">
+                    <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                        <span style='line-height: 20px;padding-right:0px;'>选项</span>
+                    </div>
+                    <div class="cubeui-col-sm5" >
+                        <span style='line-height: 20px;padding-right:0px;'>值</span>
+                    </div>
+                    <div class="cubeui-col-sm1" style="text-align: center">
+                        <span style='line-height: 20px;padding-right:0px;'>
+                            <span onClick="$.docker.utils.ui.addOpts(this,'driver-opt')" class="ops-fa-icon fa fa-plus" style="font-size:14px!important;">&nbsp;</span>
+                        </span>
+                    </div>
+                </div>
+    <!--            <div class="cubeui-row">-->
+    <!--                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">-->
+    <!--                    <input type="text" data-toggle="cubeui-textbox"-->
+    <!--                           value='{{:lease}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">-->
+    <!--                </div>-->
+    <!--                <div class="cubeui-col-sm5">-->
+    <!--                    <input type="text" data-toggle="cubeui-textbox"-->
+    <!--                           value='{{:lease}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">-->
+    <!--                </div>-->
+    <!--                <div class="cubeui-col-sm1" style="text-align: center">-->
+    <!--                    <span style='line-height: 30px;padding-right:0px;'><span class="ops-fa-icon fa fa-close" style="font-size:14px!important;">&nbsp;</span></span>-->
+    <!--                </div>-->
+    <!--            </div>-->
+            </div>
+        </div>
+
+
+        <fieldset>
+            <legend style="margin-bottom: 0px;">标签选项</legend>
+        </fieldset>
+
+        <div class="cubeui-row">
+            <div class="cubeui-col-sm12 add-opt-div">
+                <div class="cubeui-row">
+                    <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                        <span style='line-height: 20px;padding-right:0px;'>标签</span>
+                    </div>
+                    <div class="cubeui-col-sm5" >
+                        <span style='line-height: 20px;padding-right:0px;'>值</span>
+                    </div>
+                    <div class="cubeui-col-sm1" style="text-align: center">
+                        <span style='line-height: 20px;padding-right:0px;'>
+                            <span onClick="$.docker.utils.ui.addOpts(this, 'label')"  class="ops-fa-icon fa fa-plus" style="font-size:14px!important;">&nbsp;</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+</template>
+<!-- 表格工具栏结束 -->
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/volumes/volume.js",
+            ],
+            render: function () {
+                console.log("finish")
+
+                APP.renderBody("#tmpl1", {})
+                refreshVolumeInfo()
+                // let t = $.templates("#tmpl1").render({id:"1022", name:"davidliu"})
+                // $('body div').remove()
+                // $(t).appendTo($('body'))
+            }
+        }
+    });
+
+
+    APP.fn(function(){
+        loadLease();
+    })
+</script>
+</html>

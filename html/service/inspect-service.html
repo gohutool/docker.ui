@@ -1,0 +1,1255 @@
+
+
+<div data-toggle="cubeui-tabs" id='eastTabs'>
+    <div title="服务配置"
+         data-options="id:'eastTab0',iconCls:'fa fa-info-circle'">
+        <div style="margin: 0px;">
+        </div>
+
+        <div class="cubeui-fluid">
+            <fieldset style="margin-top: 20px!important;margin-bottom1: 10px;">
+                <legend>服务基本信息</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm11">
+                    <label class="cubeui-form-label">NAME:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" id="Servicename" name="Name" readonly
+                               value='{{>Spec.Name}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm1">
+                    <a  href="javascript:void(0)" id='update_service_name_btn' data-toggle='cubeui-menubutton' data-options="{
+								onClick:function(){
+										updateName(this, '{{:ID}}');
+								},
+								btnCls: 'cubeui-btn-blue',
+								iconCls: 'fa fa-pencil-square-o'
+							}">修改</a>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">SERVICE ID:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="ID" readonly
+                               value='{{>ID}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Raft:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                               value='{{>SVersion}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">REPLICAS:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                               value='{{>Replica}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">MODE:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                               value='{{>Mode}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">CreateAt:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="CreateAt" readonly
+                               value='{{>Created}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">UpdateAt:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="Updated" readonly
+                               value='{{>Updated}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="服务的容器规范, ">
+                <legend style="margin-bottom: 10px;">容器规范(服务的容器规范)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">IMAGE:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>Image}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Command:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>CommandStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Args:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>ArgStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Hostname:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.Hostname}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="要添加到容器主机文件的主机名/IP映射列表。
+                            额外主机的格式在主机（5）手册页中指定：IP_address canonical_hostname [aliases...]">Hosts:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.Hosts}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Dir:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.Dir}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">User:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Hostname" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.User}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Groups:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.Groups}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">TTY:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.TTY}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">OpenStdin:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.OpenStdin}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Isolation:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.Isolation}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Init:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.Init}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">StopSignal:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.StopSignal}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">StopGracePeriod:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.StopGracePeriod}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">CapabilityAdd:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>CapabilityAddStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">CapabilityDrop:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="CapabilityDrop" readonly
+                               value='{{>CapabilityDropStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">ReadOnly:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.ReadOnly}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Mounts:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>MountStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Sysctls:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Sysctls}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label" title="环境变量">Env:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>EnvStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">Ulimits:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>UlimitStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="即使没有更改相关参数，也会触发更新的计数器">ForceUpdate:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>ForceUpdate}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="Runtime是为任务执行器指定的运行时类型">Runtime:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Runtime}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="指定服务应连接到的网络">
+                <legend style="margin-bottom: 0px;">Networks</legend>
+            </fieldset>
+
+            <div class="cubeui-row" style="margin-bottom1: 10px;">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm2 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>Network Name</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>Network ID</span>
+                        </div>
+                        <div class="cubeui-col-sm3" >
+                            <span style='line-height: 20px;padding-right:0px;'>IP Address</span>
+                        </div>
+                    </div>
+                    {{if Spec.TaskTemplate.Networks}}
+                    {{for Spec.TaskTemplate.Networks}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm2 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>NetworkName}}</span>
+
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>NetworkID}}</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>Addr}}</span>
+                        </div>
+                    </div>
+                    {{/for}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="DNS配置(解析程序配置文件resolv.conf中DNS相关配置的规范)">
+                <legend style="margin-bottom: 0px;">DNS配置(解析程序配置文件resolv.conf中DNS相关配置的规范)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Nameservers:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>NameserverStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Search:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Search}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12" title="要修改的内部解析器变量列表（例如调试、NDOT:3等）。">
+                    <label class="cubeui-form-label">Options:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>DNSOptionStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset style="margin-top: 20px!important;margin-bottom1: 10px;" title="用户定义的容器的键/值元数据">
+                <legend style="margin-bottom: 10px;">容器标签选项(容器的键/值元数据)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm5 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>标签</span>
+                        </div>
+                        <div class="cubeui-col-sm1">
+                            <span style='line-height: 20px;padding-right:0px;'>&nbsp;</span>
+                        </div>
+                        <div class="cubeui-col-sm5" >
+                            <span style='line-height: 20px;padding-right:0px;'>值</span>
+                        </div>
+                    </div>
+                    {{if Spec.TaskTemplate.ContainerSpec.Labels}}
+                    {{props Spec.TaskTemplate.ContainerSpec.Labels}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm5 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>key}}</span>
+
+                        </div>
+                        <div class="cubeui-col-sm1">
+                            <span style='line-height: 20px;padding-right:0px;'>=</span>
+                        </div>
+                        <div class="cubeui-col-sm5">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>prop}}</span>
+                        </div>
+                    </div>
+                    {{/props}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;"
+                       title="密码文件(机密包含对将向服务公开的零个或多个机密的引用)">
+                <legend style="margin-bottom: 10px;">密码文件(机密包含对将向服务公开的零个或多个机密的引用)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm4 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;' title="文件表示由文件支持的特定目标。">File</span>
+                        </div>
+                        <div class="cubeui-col-sm4">
+                            <span style='line-height: 20px;padding-right:0px;' title="引用的特定机密的ID。">SecretID</span>
+                        </div>
+                        <div class="cubeui-col-sm3" >
+                            <span style='line-height: 20px;padding-right:0px;' title="引用的机密的名称，仅用于查找/显示目的。引用中的秘密将通过其ID识别。">SecretName</span>
+                        </div>
+                    </div>
+                    {{if Spec.TaskTemplate.ContainerSpec.Secrets}}
+                    {{props Spec.TaskTemplate.ContainerSpec.Secrets}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm4 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>File}}</span>
+
+                        </div>
+                        <div class="cubeui-col-sm4">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>SecretID}}</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>SecretName}}</span>
+                        </div>
+                    </div>
+                    {{/props}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;"
+                       title="配置文件(Configs包含对将向服务公开的零个或多个Config的引用)">
+                <legend style="margin-bottom: 10px;" title="Configs包含对将向服务公开的零个或多个Config的引用">配置文件</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm4 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;' title="文件支持的特定目标/运行时配置内容。">File/Runtime</span>
+                        </div>
+                        <div class="cubeui-col-sm4" >
+                            <span style='line-height: 20px;padding-right:0px;' title="引用的特定配置的ID；注：配置FILE和配置Runtime时相互排斥。">ConfigID</span>
+                        </div>
+                        <div class="cubeui-col-sm3" >
+                            <span style='line-height: 20px;padding-right:0px;' title="引用的配置的名称，仅用于查找/显示目的。引用中的配置将由其ID标识。">ConfigName</span>
+                        </div>
+                    </div>
+                    {{if Spec.TaskTemplate.ContainerSpec.Configs}}
+                    {{props Spec.TaskTemplate.ContainerSpec.Configs}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm4 cubeui-col-sm-offset1" style="padding-right: 5px">
+                                    <span style='line-height: 20px;padding-right:0px;'>
+                                    {{if File}}{{>File}}{{else}}{{>RuntimeStr}}{{/if}}
+                                    </span>
+                        </div>
+                        <div class="cubeui-col-sm4">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>ConfigID}}</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>ConfigName}}</span>
+                        </div>
+                    </div>
+                    {{/props}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="健康测试策略(用于检查容器是否健康的测试)">
+                <legend style="margin-bottom: 10px;">健康测试策略(用于检查容器是否健康的测试)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label" title="要执行的测试。可能的值为:[]从映像或父映像继承healthcheck; [“NONE”]禁用healthcheck;
+                            [“CMD”，args…]直接执行参数;[“CMD-SHELL”，command]使用系统的默认SHELL运行命令">Test:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>TestStr}}'
+                               data-options="
+                                       prompt:'要执行的测试。可能的值为:为空从映像或父映像继承healthcheck; NONE禁用healthcheck;CMD args直接执行参数;CMD-SHELL command使用系统的默认SHELL运行命令'
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="检查之间的等待时间（纳秒）。它应为0或至少1000000（1毫秒）。
+                            0表示继承。">Interval(ns):</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.HealthCheck.Interval}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="在检查认为为已挂时的等待时间。
+                            它应为0或至少1000000（1毫秒）。0表示继承。">Timeout(ns):</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="CapabilityDrop" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.HealthCheck.Timeout}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="认为容器不健康所需的连续故障数。
+                            0表示继承。">Retries:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.HealthCheck.Retries}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="容器初始化后开始运行健康检查的开始时间（纳秒）。
+                            它应为0或至少1000000（1毫秒）。0表示继承。">StartPeriod(ns):</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="CapabilityDrop" readonly
+                               value='{{>Spec.TaskTemplate.ContainerSpec.HealthCheck.StartPeriod}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="限制资源规范(适用于作为服务一部分创建的每个单独容器的资源需求,描述任务可以请求的资源限制的对象)">
+                <legend style="margin-bottom: 10px;">限制资源规范(适用于作为服务一部分创建的每个单独容器的资源需求)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">NanoCPUs:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.Resources.Limits.NanoCPUs}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">MemoryBytes:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="CapabilityDrop" readonly
+                               value='{{>Spec.TaskTemplate.Resources.Limits.MemoryBytes}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="限制容器中PID的最大数量。将0设置为无限。默认值：0">Pid Limits:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.Resources.Limits.Pids}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="保留资源规范(适用于作为服务一部分创建的每个单独容器的资源需求,可以由节点播发并由任务请求的资源)">
+                <legend style="margin-bottom: 10px;">保留资源规范(适用于作为服务一部分创建的每个单独容器的资源需求)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">NanoCPUs:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.Resources.Reservations.NanoCPUs}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">MemoryBytes:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="CapabilityDrop" readonly
+                               value='{{>Spec.TaskTemplate.Resources.Reservations.MemoryBytes}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="重启策略(适用于作为此服务一部分创建的容器的重启策略规范。)">
+                <legend style="margin-bottom: 10px;">重启策略(适用于作为此服务一部分创建的容器的重启策略规范)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Condition:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.RestartPolicy.Condition}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">Delay(ns):</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="CapabilityDrop" readonly
+                               value='{{>Spec.TaskTemplate.RestartPolicy.Delay}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label">MaxAttempts:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.RestartPolicy.MaxAttempts}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="Windows是用于评估重启策略的时间窗口（默认值为0，无限制）。默认值：0">Window:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Window" readonly
+                               value='{{>Spec.TaskTemplate.RestartPolicy.Window}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="服务分配策略(适用于作为服务一部分创建的每个单独容器的服务分配)">
+                <legend style="margin-bottom: 10px;">服务分配策略(适用于作为服务一部分创建的每个单独容器的服务分配)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label" title="约束表达式数组，用于限制可以调度任务的节点集。约束表达式可以使用匹配（=）或排除（！=）规则。多个约束查找满足每个表达式（和匹配）的节点。约束可以匹配节点或Docker引擎标签">Constraints:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>ConstraintStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label" title="首选项提供了一种使调度器了解拓扑等因素的方法。它们按优先级从高到低的顺序提供。">Preferences:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>PreferenceStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="平台存储服务映像可以在其上运行的所有平台。此字段在平台筛选器中用于调度。如果为空，则平台过滤器关闭，这意味着没有调度限制。">Platforms:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>PlatformStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="每个节点的最大副本数（默认值为0，不受限制）默认值：0">MaxReplicas:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.TaskTemplate.Placement.MaxReplicas}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="服务更新策略(适用于作为服务一部分创建的每个单独容器的服务更新策略的规范)">
+                <legend style="margin-bottom: 10px;">服务更新策略(适用于作为服务一部分创建的每个单独容器的服务更新策略的规范)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="一次迭代中要更新的最大任务数（0表示无限并行性）。">Parallelism:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.UpdateConfig.Parallelism}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="更新之间的时间量，以纳秒为单位。">Delay:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.UpdateConfig.Delay}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="如果更新的任务无法运行或在更新过程中停止运行，则要采取的操作。枚举：'continue','pause','rollback'">FailureAction:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.UpdateConfig.FailureAction}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="监视每个更新任务的失败时间量，以纳秒为单位。">Monitor:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.UpdateConfig.Monitor}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="在调用失败操作之前的更新期间可能失败的任务的分数，指定为0到1之间的浮点数。默认: 0">MaxFailureRatio:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.UpdateConfig.MaxFailureRatio}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="推出更新任务时的操作顺序。要么在新任务启动之前关闭旧任务，要么在旧任务关闭之前启动新任务。枚举：“stop-first”“start-first”">Order:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.UpdateConfig.Order}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px!important;margin-bottom1: 10px;" title="服务回滚策略(适用于作为服务一部分创建的每个单独容器的服务服务回滚策略的规范)">
+                <legend style="margin-bottom: 10px;">服务回滚策略(适用于作为服务一部分创建的每个单独容器的服务服务回滚策略的规范)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="一次迭代中要回滚的最大任务数（0表示无限并行性）。">Parallelism:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.RollbackConfig.Parallelism}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="回滚之间的时间量，以纳秒为单位。">Delay:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.RollbackConfig.Delay}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="如果回滚的任务无法运行或在回滚过程中停止运行，则要采取的操作。枚举：'continue','pause'">FailureAction:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.RollbackConfig.FailureAction}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="监视每个回滚任务的失败时间量，以纳秒为单位。">Monitor:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.RollbackConfig.Monitor}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="在调用失败操作之前的回滚期间可能失败的任务的分数，指定为0到1之间的浮点数，指定为0到1之间的浮点数。默认: 0">MaxFailureRatio:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.RollbackConfig.MaxFailureRatio}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+                <div class="cubeui-col-sm6">
+                    <label class="cubeui-form-label" title="回滚任务时的操作顺序。要么在新任务启动之前关闭旧任务，要么在旧任务关闭之前启动新任务。枚举：“stop-first”“start-first”">Order:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Groups" readonly
+                               value='{{>Spec.RollbackConfig.Order}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset style="margin-top: 20px!important;margin-bottom1: 10px;" title="用户定义的服务的键/值元数据">
+                <legend style="margin-bottom: 10px;">服务标签选项(服务的键/值元数据)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm5 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>标签</span>
+                        </div>
+                        <div class="cubeui-col-sm1">
+                            <span style='line-height: 20px;padding-right:0px;'>&nbsp;</span>
+                        </div>
+                        <div class="cubeui-col-sm5" >
+                            <span style='line-height: 20px;padding-right:0px;'>值</span>
+                        </div>
+                    </div>
+                    {{if Spec.Labels}}
+                    {{props Spec.Labels}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm5 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>key}}</span>
+
+                        </div>
+                        <div class="cubeui-col-sm1">
+                            <span style='line-height: 20px;padding-right:0px;'>=</span>
+                        </div>
+                        <div class="cubeui-col-sm5">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>prop}}</span>
+                        </div>
+                    </div>
+                    {{/props}}
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div title="Endpoint配置"
+         data-options="id:'eastTab1',iconCls:'fa fa-desktop'">
+        <div style="margin: 0px;">
+        </div>
+
+        <div class="cubeui-fluid">
+            <fieldset>
+                <legend>端点信息(可配置为访问和负载平衡服务的属性)</legend>
+            </fieldset>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">SERVICE NAME:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Name" readonly
+                               value='{{>Name}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">SERVICE ID:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Name" readonly
+                               value='{{>ID}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label" title="用于任务之间内部负载平衡的解析模式。枚举：“vip”,“dnsrr”">Mode:</label>
+                    <div class="cubeui-input-block">
+                        <input type="text" data-toggle="cubeui-textbox" name="Name" readonly
+                               value='{{>Endpoint.Spec.Mode}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">NETWORKS:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                               value='{{>NetworkStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm12">
+                    <label class="cubeui-form-label">PORTS:</label>
+                    <div class="cubeui-input-block">
+
+                        <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                               value='{{>PortStr}}'
+                               data-options="
+                                            "
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 30px;" title="可从外部访问此服务的公开端口列表。只有在使用vip解析模式时才能提供端口">
+                <legend style="margin-bottom: 10px;">容器端口设置</legend>
+            </fieldset>
+
+            <div class="cubeui-row" style="margin-bottom: 10px;">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm2 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>Publish Mode</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>Protocol</span>
+                        </div>
+                        <div class="cubeui-col-sm3" >
+                            <span style='line-height: 20px;padding-right:0px;'>Publish Port</span>
+                        </div>
+                        <div class="cubeui-col-sm3" >
+                            <span style='line-height: 20px;padding-right:0px;'>Target Port</span>
+                        </div>
+                    </div>
+                    {{if Endpoint.Ports}}
+                    {{for Endpoint.Ports}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm2 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>PublishMode}}</span>
+
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>Protocol}}</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>PublishedPort}}</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>TargetPort}}</span>
+                        </div>
+                    </div>
+                    {{/for}}
+                    {{/if}}
+                </div>
+            </div>
+
+            <fieldset  style="margin-top: 20px;" title="端口的虚拟ip">
+                <legend style="margin-bottom: 10px;">VirtualIP</legend>
+            </fieldset>
+
+            <div class="cubeui-row" style="margin-bottom: 10px;">
+                <div class="cubeui-col-sm12">
+                    <div class="cubeui-row"  style="margin-top: 0px;">
+                        <div class="cubeui-col-sm2 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>Network Name</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>Network ID</span>
+                        </div>
+                        <div class="cubeui-col-sm3" >
+                            <span style='line-height: 20px;padding-right:0px;'>IP Address</span>
+                        </div>
+                    </div>
+                    {{if Endpoint.VirtualIPs}}
+                    {{for Endpoint.VirtualIPs}}
+                    <div class="cubeui-row">
+                        <div class="cubeui-col-sm2 cubeui-col-sm-offset1" style="padding-right: 5px">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>NetworkName}}</span>
+
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>NetworkID}}</span>
+                        </div>
+                        <div class="cubeui-col-sm3">
+                            <span style='line-height: 20px;padding-right:0px;'>{{>Addr}}</span>
+                        </div>
+                    </div>
+                    {{/for}}
+                    {{/if}}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div title="任务信息"
+         data-options="id:'eastTab1',iconCls:'fa fa-tasks'">
+        <div style="margin: 0px;">
+        </div>
+        <!-- 表格工具栏结束 -->
+        <div id='tasklist-layout' data-toggle="cubeui-layout" data-options="fit:true">
+            <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+                    headerCls:'border_right',bodyCls:'border_right'">
+
+                <!-- 表格工具栏开始 -->
+                <div id="relatedTasksDg-toolbar" class="cubeui-toolbar"
+                     data-options="grid:{
+                                   type:'datagrid',
+                                   id:'relatedTasksDg'
+                               }">
+                    <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                                    onClick:function(){
+                                        refreshTasks();
+                                    },
+                                    extend: '#relatedTasksDg-toolbar',
+                                    btnCls: 'cubeui-btn-orange',
+                                    iconCls: 'fa fa-refresh'
+                                }">刷新</a>
+
+                    <div style="display: inline-block; float:right" >
+                        <span style='line-height: 30px;padding-right:0px' title="">状态：</span>
+                        <input type="text" id="tasklist-desired-state" name="tasklist-desired-state" value="" data-toggle="cubeui-combobox"
+                               data-options="
+                                                width:160,
+                                                required:false,prompt:'为空，查询所有',
+                                                valueField:'KEY',
+                                                textField:'TEXT',
+                                                onClear:function(){
+                                                    $('#tasklist-searchbtn').trigger('click');
+                                                },
+                                                data:[{'KEY':'','TEXT':'所有'},{'KEY':'running','TEXT':'Running'},{'KEY':'shutdown','TEXT':'Shutdown'},
+                                                {'KEY':'accepted','TEXT':'Accepted'}]
+                                       ">
+
+                        <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+
+                        <input type="text" id='tasklist-search_type' name="tasklist-search_type" value="name" data-toggle="cubeui-combobox"
+                               data-options="
+                                                width:120,
+                                                required:true,prompt:'查询方式，必须填写',
+                                                valueField:'KEY',
+                                                textField:'TEXT',
+                                                data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'Label'},
+                                                {'KEY':'id','TEXT':'ID'},
+                                                {'KEY':'node','TEXT':'Node'}]
+                                       ">
+                        <input type="text" id='tasklist-search_key' name="tasklist-search_key" data-toggle="cubeui-textbox"
+                               data-options="onClear:function(){
+                                            $('#tasklist-searchbtn').trigger('click');
+                                       }, mask:'{{:~js(prefix)}}', prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+                        <a href="javascript:void(0)" id="tasklist-searchbtn"
+                           data-toggle="cubeui-menubutton"
+                           data-options="
+                                   iconCls:'fa fa-search',
+                                   btnCls:'cubeui-btn-blue',
+                                   onClick:function(){
+                                        let param = $.extend({}, $('#relatedTasksDg').datagrid('options').queryParams);
+
+                                        param['desired-state'] = $('#tasklist-desired-state').combobox('getValue');
+                                        param['search_type'] = $('#tasklist-search_type').combobox('getValue');
+                                        param['search_key'] = $('#tasklist-search_key').textbox('getValue');
+
+                                        $('#relatedTasksDg').datagrid('reload', param);
+                                   }">查询</a>
+                    </div>
+                </div>
+                <table id="relatedTasksDg"></table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

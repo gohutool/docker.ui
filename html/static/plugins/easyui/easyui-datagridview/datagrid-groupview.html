@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jQuery EasyUI</title>
+	<link rel="stylesheet" type="text/css" href="../../themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../themes/icon.css">
+	<script type="text/javascript" src="../../jquery.min.js"></script>
+	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="datagrid-groupview.js"></script>
+	<script>
+		$(function(){
+			$('#dg').datagrid({
+				title:'DataGrid - GroupView',
+				width:500,
+				height:250,
+				rownumbers:true,
+				remoteSort:false,
+				nowrap:false,
+				fitColumns:true,
+				url:'datagrid_data.json',
+				columns:[[
+					{field:'productid',title:'Product ID',width:100,sortable:true},
+					{field:'listprice',title:'List Price',width:80,align:'right',sortable:true},
+					{field:'unitcost',title:'Unit Cost',width:80,align:'right',sortable:true},
+					{field:'attr1',title:'Attribute',width:150,sortable:true},
+					{field:'status',title:'Status',width:60,align:'center'}
+				]],
+				groupField:'productid',
+				view: groupview,
+				groupFormatter:function(value, rows){
+					return value + ' - ' + rows.length + ' Item(s)';
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>DataGrid - GroupView</h1>
+	
+	<table id="dg"></table>
+</body>
+</html>

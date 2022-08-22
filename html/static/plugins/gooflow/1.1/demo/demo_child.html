@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>流程图DEMO</title>
+<!--[if lt IE 9]>
+<?import namespace="v" implementation="#default#VML" ?>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../codebase/GooFlow.css"/>
+<script type="text/javascript" src="child.js"></script>
+<script type="text/javascript" src="../plugin/jquery.min.js"></script>
+<script type="text/javascript" src="../codebase/GooFunc.js"></script>
+<script type="text/javascript" src="../plugin/json2.js"></script>
+<link rel="stylesheet" type="text/css" href="default.css"/>
+<script type="text/javascript" src="../codebase/GooFlow.js"></script>
+<script type="text/javascript">
+var property={
+	width:1200,
+	height:600,
+	toolBtns:["start round","end","task","node","chat","state","plug","join","fork","complex mix"],
+	haveHead:true,
+	headBtns:["new","open","save","undo","redo","reload"],//如果haveHead=true，则定义HEAD区的按钮
+	haveTool:true,
+	haveGroup:true,
+	useOperStack:true
+};
+var remark={
+	cursor:"选择指针",
+	direct:"转换连线",
+	start:"开始结点",
+	"end round":"结束结点",
+	"task round":"任务结点",
+	node:"自动结点",
+	chat:"决策结点",
+	state:"状态结点",
+	plug:"附加插件",
+	fork:"分支结点",
+	"join":"联合结点",
+	"complex mix":"复合结点",
+	group:"组织划分框编辑开关"
+};
+var demo;
+$(document).ready(function(){
+	demo=$.createGooFlow($("#demo"),property);
+	demo.setNodeRemarks(remark);
+	//demo.onItemDel=function(id,type){
+	//	return confirm("确定要删除该单元吗?");
+	//}
+	demo.loadData(jsondata);
+});
+var out;
+function Export(){
+    document.getElementById("result").value=JSON.stringify(demo.exportData());
+}
+</script>
+</head>
+<body>
+<div id="demo" style="margin:10px"></div>
+<input id="submit" type="button" value='导出结果' onclick="Export()"/>
+<textarea id="result" row="6"></textarea>
+</body>
+</html>

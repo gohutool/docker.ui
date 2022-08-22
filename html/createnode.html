@@ -1,0 +1,84 @@
+<div style="margin: 0px;">
+</div>
+
+<div class="cubeui-fluid">
+
+    <fieldset>
+        <legend>连接信息</legend>
+    </fieldset>
+    <input type="hidden" name="id" value="{{:id}}">
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">连接名称:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-textbox" id="node_name" name="node_name"
+                       value='{{:node_name}}' data-options="required:true,prompt:'连接名称，必须填写'">
+            </div>
+        </div>
+    </div>
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">主机:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-textbox" id="node_host" name="node_host"
+                       value='{{:node_host}}' data-options="value:'localhost',required:true,prompt:'主机IP，必须填写'">
+            </div>
+        </div>
+    </div>
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm4">
+            <label class="cubeui-form-label">端口:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-numberspinner" id="node_port" name="node_port"
+                       value='{{:node_port}}' data-options="required:true,prompt:'端口，默认端口2379, 必须填写',
+                       min:100,increment:1,max:65535">
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm3">
+            <label class="cubeui-form-label">启用认证:</label>
+            <div class="cubeui-input-block">
+                <input type="text" value='1' id="authorized_enabled" name="authorized_enabled"
+                       data-toggle="cubeui-switchbutton" data-options="value:1,width:'50px',onText:'',offText:''">
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">用户名:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-textbox" disabled id="node_username" name="node_username"
+                       value='{{:node_username}}' data-options="required:true,prompt:'连接用户名，连接etcd的用户名'">
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">密码:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-passwordbox" disabled id="node_password" name="node_password"
+                       value='{{:node_password}}' data-options="required:true,prompt:'连接密码，连接etcd的密码'">
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">备注信息</label>
+            <div class="cubeui-input-block">
+                <input value='{{:node_demo}}' type="text" id="node_demo" name="node_demo" data-toggle="cubeui-textarea"
+                       data-options="required:false,prompt:'备注信息，选择填写',height:120">
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<template-func>
+
+</template-func>

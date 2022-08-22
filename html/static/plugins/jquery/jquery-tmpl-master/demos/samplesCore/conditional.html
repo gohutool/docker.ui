@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample illustrates use of conditional template tags {{if}} and {{else}}.
+The comment tag {{! }} is also shown.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<body>
+<script src="http://code.jquery.com/jquery.js" type="text/javascript"></script>
+<script src="../../jquery.tmpl.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	$( "#movieTemplate" )
+	.tmpl( movies )
+	.appendTo( "#movieList" );
+});
+
+var movies = [
+	{ Name: "Meet Joe Black", Languages: "French", Subtitles: "English" },
+	{ Name: "The Mighty", Subtitles: "French and Spanish" },
+	{ Name: "The Mighty" },
+	{ Name: "City Hunter", Languages: "Mandarin and Cantonese" }
+];
+</script>
+
+<script id="movieTemplate" type="text/x-jquery-tmpl">
+<li>
+	Title: ${Name}.
+	{{if Languages}}
+		(Alternative languages: ${Languages}).
+	{{else Subtitles}}
+		(Original language only. Subtitles in ${Subtitles}).
+	{{else}}
+		(Original version only, without subtitles).
+	{{/if}}
+</li>
+</script>
+
+<ul id="movieList"></ul>
+
+</body>
+</html>

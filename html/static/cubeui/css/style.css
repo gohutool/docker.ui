@@ -1,0 +1,242 @@
+.user-panel>.info{top:20px;}
+.sidebar{ z-index:1;position:relative; }
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header{height:215px;}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header>p{margin-top:6px;}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header>p>small{font-size:13px;margin-bottom:3px;}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header>p>small i{font-style:normal;text-align:right;display:inline-block;width:50%; float:left;}
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header>p>small span{width:50%;text-align:left;display:inline-block;}
+.navbar-nav>.user-menu>.dropdown-menu>.user-body a{font-size:12px;}
+.sidebar-menu{width:100%;overflow: visible;position:absolute; left:0; top:115px;}
+.bannerMenu:hover{text-decoration: none;}
+#west .panel-icon{font-size:12px;}
+.clear{width:100%;height:0; line-height:0;font-size:0;overflow:hidden;clear:both;}
+
+.box_block{display:inline-block;}
+ul.sub li a{position: relative;}
+span.badge,span.badge2{display: inline-block; min-width: 10px; padding: 3px 5px; font-size: 12px; font-weight: 700;line-height: 1; color: #fff;text-align: center;white-space: nowrap;vertical-align: middle;background-color: #777;border-radius: 10px; position: absolute; top:50%;  right:3px;margin: -9px 0 0;}
+ul.sub li a:hover span.badge{ color: #fff;background-color: #337ab7;}
+span.badge-tip{width:6px; height:6px;border-radius:100%;position: absolute; top:50%;  right:6px;margin: -4px 0 0;}
+.bg-red{ background:red;}
+.bg-blue{background:blue;}
+/*所有按钮颜色统一*/
+.cubeui-toolbar.datagrid-toolbar a.l-btn,#carrmess_add a.l-btn,#carrmess_edit a.l-btn,#importTable .layui-btn,.cubeui-btn-normal,.cubeui-btn-danger,.cubeui-btn{ background: #F6F6F6; color: #000; border: 1px solid #afafaf; filter: none; padding:0 6px; transition: 0.5s; height:32px !important;}
+.cubeui-toolbar.datagrid-toolbar a.l-btn:hover,#carrmess_add a.l-btn:hover,#carrmess_edit a.l-btn:hover,#importTable .layui-btn:hover,.cubeui-btn-normal:hover,.cubeui-btn-danger:hover,.cubeui-btn:hover{ background: #dad8d8; border: 1px solid #afafaf;}
+/*数据列表头*/
+.search-box{margin-bottom:0;}
+.search-box ul{ overflow:hidden;}
+.search-box ul li{margin-bottom:8px;white-space:nowrap;}
+.search-box ul li label{ text-align:right; }
+.search-box ul li label.Font2{width:26px;}
+.search-box ul li label.Font3{width:39px;}
+.search-box ul li label.Font4{width:51px;}
+.search-box ul li label.Font5{width:65px;}
+.search-box ul li label.Font6{width:78px;}
+.search-box ul li label.Font7{width:91px;}
+.search-box ul li label.Font8{width:105px;}
+.datagrid-toolbar{ padding:10px 2px 8px 12px;}
+.search-box label{ display:inline-block; height:33px; line-height:33px; color:#555;}
+.datagrid-body{background:#fafafa;}
+.datagrid-row-alt{background:#fff;}
+.datagrid-row-over, .datagrid-header td.datagrid-header-over,.datagrid-row-selected{background: #e7eaec;}
+.search-box .textbox{margin-right:5px;}
+/*附件上传按钮统一*/
+#upfileGrid-toolbar a.l-btn,#upfileGrid-toolbar #formDown,#uploaderDialog-buttons a.l-btn{ background: #F6F6F6; color: #000; border: 1px solid #afafaf; filter: none; padding:0 6px; transition: 0.5s;}
+#upfileGrid-toolbar a.l-btn:hover,#upfileGrid-toolbar #formDown:hover,#uploaderDialog-buttons a.l-btn:hover{ background: #dad8d8;}
+#upfileGrid-toolbar .webuploader-pick{ display:inline-block; width:62px; height:15px;line-height:15px;background: #F6F6F6; color: #000; border: 1px solid #afafaf; filter: none; transition: 0.5s;}
+#upfileGrid-toolbar .webuploader-pick:hover{background: #dad8d8;}
+#upfileGrid-toolbar a#formDown{text-decoration: none;}
+/*编辑窗口*/
+.popSpacePoint{width:100%; height:50px;overflow:hidden; clear:both; font-size: 10px;}
+.editTablePadding td {padding: 10px 2px 2px 2px;}
+.divider{width:97%;padding:3px 0 3px 1%;height:36px;line-height:36px; border-bottom:1px dotted #ddd; overflow:hidden; margin:0 auto; font-size:13px;}
+.divider span{font-size:12px;}
+/*logo*/
+.main-header .logo .logo-lg{ letter-spacing: 5px;}
+/*导航下的版权*/
+.copyright{width:100%; height:20px; color:#b8c7ce;text-align:center;font-size:12px; position:absolute;left:0;bottom:0; letter-spacing:1px;z-index:0;}
+.sidebar-collapse .copyright{display:none;}
+/*数据iframe高度上升5px */
+.tab-pane{line-height:0; overflow:hidden;}
+.tab-pane p{line-height:150%;}
+/*客户信息*/
+#tabAllAddPage_1 .editTablePadding,#tabAllAddPage_2 .editTablePadding{ margin:0px 0 2px 20px;}
+.divider a{display:inline-block; font-size:13px; color:#333;cursor:pointer; margin-left:770px;}
+.divider a:hover{text-decoration:none; color:#000;transition:2s;}
+.editTextarea textarea{ width:490px; height:70px;padding:5px; line-height:24px; color:#333; border:1px solid #ddd; margin-top:0px;}
+.shippingAddress{width:96%; font-size: 13px;line-height:24px; overflow:hidden; margin:0px auto;}
+.shippingAddress dl{padding:10px 0 5px; border-bottom:1px dashed #ddd;}
+.shippingAddress dt>span{display:inline-block;width:61%;height:24px;line-height:24px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;float:left; }
+.shippingAddress em{width:15%; font-style:normal;height:24px;line-height:24px;float:left; }
+.shippingAddress em input{vertical-align:middle;}
+.shippingAddress dd {width:100%; overflow:hidden;}
+.shippingAddress dd i {display:inline-block; height:24px; line-height:24px; float:left;width:15%; font-style:normal;}
+.inputMap{ height:300px;}
+.inputMap .InputS{position:relative;}
+.inputMap .InputS a{position:absolute; right:10px; top:8px;font-size: 16px; color:#666; text-decoration:none;}
+.inputMap .MayWeb{border:1px solid #ddd; border-top:none; width:488px; height:276px;}
+.inputMap .MayWeb img{width:488px; height:276px;}
+/*上传资质*/
+.Aupload{ width:700px; text-align:center;margin-left:10px;}
+.FirstSet,.Secondset{ margin:10px auto 0;position: relative;overflow:hidden;width:340px;text-align:center;display:inline-block;}
+.FirstSet strong,.Secondset strong{ width:100%; height:30px; line-height:30px; font-size: 14px; text-align:center; display:block; color:#666; font-weight:inherit;}
+.FirstSet .photo,.Secondset .photo{ width:330px; height:320px;line-height:320px; border:1px solid #dedede; overflow:hidden;background:#fcfcfc;display:inline-block;}
+.FirstSet .btnX,.Secondset .btnX{ width:auto; height: 50px;padding:0; overflow:hidden;text-align:center; display:inline-block; position:relative;}
+.FirstSet .btnX button,.Secondset .btnX button{ width:80px; height:24px; float:left;margin:12px 0px 0 0px; display:inline-block;}
+.FirstSet .photo img,.Secondset .photo img{max-height:320px; max-width:320px;display: inline-block;}
+a.file {position: relative;display:inline-block; height:30px; line-height:30px;border: 1px solid #2e6da4; border-radius: 4px;overflow: hidden; color: #fff;text-decoration: none; text-indent:0;width:100px; background:#337ab7; top:13px; float:left;}
+a.file input {position: absolute; font-size: 100px; right: 0 !important; top: 0 !important;; opacity: 0;}
+a.file:hover {background: #286090;text-decoration: none;}
+.fa-eye{font-size:10px;}
+a.viewBtn{ border:1px solid #ddd; border-radius:3px;padding:7px 12px; height:auto !important; display:inline-block;background:none; color:#333; font-size:13px;}
+a.viewBtn:hover{border:1px solid #ddd;background:#3c8dbc; color:#fff;border-radius:5px; text-decoration:none;}
+.turnDown{width:100%;margin-top:10px;}
+.turnDown .label{width:135px; text-align:right;display:inline-block; height:70px; line-height: 70px; vertical-align:top; color:#333;}
+.turnDown textarea,.refuse{border:1px solid #ddd; padding:3px; width:668px; margin-left:22px;}
+.refuse{margin-top:10px;}
+    /*菜单树*/
+.tree-icon{ width:auto;}
+/*用户管理开关按钮*/
+.switchbutton-inner{width:150px!important;}
+.switchbutton{width:70px!important;height:26px!important; line-height:26px; border-radius:8px!important;}
+.switchbutton-on{border-radius:5px 0 0 5px; background:#367fa9;}
+.switchbutton-off{border-radius:0 5px 5px 0; }
+.switchbutton-handle{margin-left:-29px!important;border-radius:9px;}
+/*编辑按钮重置*/
+.window-body .popBtn,.myinfo .popBtn {width:100%; background:#f9f9f9; height:30px; line-height:30px; text-align:center; border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:5px 0 8px;overflow:hidden; position:absolute;left:0; bottom:0!important;}
+.window-body .popBtn ul,.myinfo .popBtn ul{display:inline-block; float:right;}
+.window-body .popBtn li,.myinfo .popBtn li{display:inline-block; float:left;}
+.window-body .popBtn li a,.myinfo .popBtn li a{font-size: 12px;width:60px; line-height:32px; margin:0 2px;padding:0 7px; display:inline-block; border-radius:2px; text-align:center;}
+.window-body .popBtn li a span,.myinfo .popBtn li a span{font-size:16px;margin-right:2px;}
+.window-body .popBtn li a:hover,.myinfo .popBtn li a:hover{text-decoration:none;}
+/*下拉多选框*/
+.textbox textarea.textbox-text{padding-right:20px!important; width:90%!important;}
+/*菜单图标管理 换icon页*/
+.window-body .page-header{margin:0!important;padding-left:10px; font-size:16px;}
+.window-body section{margin:10px!important;}
+/*菜单图标管理*/
+.menu_icon{width:100%; margin-bottom:10px;}
+/*角色管理*/
+.role{width:100%; overflow:hidden;}
+.role .editTable{margin:0; width:100%;}
+.role .editTable .divider{width:98%;margin:0 1%; padding-left:10px;}
+.role .textbox textarea.textbox-text{width:100%!important;}
+.role .editTable label{padding-left:50px;}
+.role .zTreeDemoBackground{margin-left:100px;}
+/*我的平台信息*/
+.popBtnFixed{position:absolute!important;top:-15px;left:0px!important; background:none!important;border:none!important; margin-top:20px; padding:0px!important; height:34px!important;line-height:34px!important;}
+.popBtnFixed ul{float:left!important;margin-left:620px;}
+
+/*我的订单*/
+.divider .addGoods{width:110px; height: 30px; line-height:30px;text-align:center;float:none; margin-left:3%;}
+/*内容框*/
+.contentCase{margin: 10px auto 10px; overflow:hidden;}
+.contentCase .Case01,.contentCase .Case02{width:241px; height:241px; border:1px solid #ddd; margin-right:20px; display:inline-block; float: left;}
+.contentCase .Case01 textarea{width:240px!important; height:240px!important;border:none;}
+.contentCase .textbox.textbox-disabled{width:240px!important; height:240px!important; margin:0;}
+.contentCase img{width:240px; height:240px;}
+/*上传头像*/
+.UploadImg{width:200px; height:200px;text-align:center;float:left;margin-top:18px;}
+.UploadHead{width:200px; height:200px;}
+.UploadHead strong{ width:100%; height:30px;line-height:30px; text-align:center;font-size:12px; display:block;}
+.UploadHead .photo{width:100px; height:100px;border:1px solid #ddd; margin:0 auto;border-radius:50%; background:#eee;}
+.UploadHead .photo img{width:100px;height:100px;}
+.UploadHead .btnX {overflow:hidden;display:inline-block;margin:10px auto 0;}
+.UploadHead .btnX a.file{width:auto;padding:0 10px; top:0;}
+
+/*--------------------加载start--------------------*/
+.loading-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    opacity: 1.0;
+    filter: Alpha(opacity=60); /* IE8 以及更早的浏览器 */
+    z-index: 9999;
+}
+
+.loading-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -41.5px;
+    margin-left: -41.5px;
+    width: 83px;
+    height: 83px;
+    background: url("../images/loading-img.png") no-repeat center center;
+}
+
+.loading-round {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 81px;
+    height: 81px;
+    background: url("../images/loading-bg.png") no-repeat center center;
+}
+
+.loading-dot {
+    width: 83px;
+    height: 83px;
+    background: url("../images/loading-dot.png") no-repeat center center;
+}
+
+.loading-round, .loading-dot {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin 1s infinite linear;
+    -moz-animation: spin 1s infinite linear;
+    -ms-animation: spin 1s infinite linear;
+    -o-animation: spin 1s infinite linear;
+}
+
+.collapseMenu {
+    width: 30px;
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spin {
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*--------------------加载end--------------------*/

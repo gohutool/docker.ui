@@ -1,0 +1,37 @@
+.systemName a:hover{color:white;text-decoration: none;}
+.bannerMenu p{padding: 2px;}
+.bannerMenu p span {font-size: 12px;text-decoration: none;}
+.bannerMenu lable {font-size:20px;font-weight:bold;}
+.bannerMenu {
+    padding: 0 5px 0px 5px;
+    height: 70px;
+    line-height: 70px;
+}
+.topmenu.selected a p span{font-size: 13px;font-weight: bold;}
+#quickquery-div{display:inline-block}
+
+
+.systemName a:hover{color:white;text-decoration: none;}
+.bannerMenu p{padding: 2px;}
+.bannerMenu p span {font-size: 12px;text-decoration: none;}
+.bannerMenu lable {font-size:20px;font-weight:bold;}
+.bannerMenu {
+    padding: 0 5px 0px 5px;
+    height: 70px;
+    line-height: 70px;
+}
+.topmenu.selected a p span{font-size: 13px;font-weight: bold;}
+#quickquery-div{display:inline-block}
+
+
+#RightAccordion .layui-badge, #RightAccordion .layui-badge-dot {
+    /*position: absolute;
+    top: 40%;*/
+    position: relative;
+    top: 0%;
+    margin: -5px 6px 0;
+}
+
+#RightAccordion .layui-badge-dot {
+    top: 0%!important;
+}

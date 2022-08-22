@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender enabled="true" name="console">
+    <type>console</type>
+    <pattern>[%D %T %m] [%L][%l] (%S) %M</pattern>
+    <!-- level is (:?FINEST|FINE|DEBUG|TRACE|INFO|WARNING|ERROR) -->
+  </appender>
+  <appender enabled="true" name="file">
+    <type>file</type>
+    <pattern>[%D %T %m] [%L][%l] (%S) %M</pattern>
+    <property name="filename">docker.ui.log</property>
+    <!--
+       %T - Time (15:04:05 MST)
+       %t - Time (15:04)
+       %D - Date (2006/01/02)
+       %d - Date (01/02/06)
+       %L - Level (FNST, FINE, DEBG, TRAC, WARN, EROR, CRIT)
+       %S - Source
+       %M - Message
+       It ignores unknown format strings (and removes them)
+       Recommended: "[%D %T] [%L] (%S) %M"
+    -->
+    <property name="rotate">false</property> <!-- true enables log rotation, otherwise append -->
+    <property name="maxsize">0M</property> <!-- \d+[KMG]? Suffixes are in terms of 2**10 -->
+    <property name="maxlines">0K</property> <!-- \d+[KMG]? Suffixes are in terms of thousands -->
+    <property name="daily">true</property> <!-- Automatically rotates when a log message is written after midnight -->
+  </appender>
+
+  <!-- 输出级别是info级别及以上的日志，下面的ref关联的两个appender没有filter设置，所以，info及以上的日志都是会输出到这2个appender的 -->
+  <root>
+    <level>info</level>
+    <appender-ref ref="console" />
+    <appender-ref ref="file" />
+  </root>
+
+</configuration>

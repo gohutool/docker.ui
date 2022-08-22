@@ -1,0 +1,137 @@
+<div style="margin: 0px;">
+</div>
+
+<div class="cubeui-fluid">
+    <fieldset>
+        <legend>数据卷信息</legend>
+    </fieldset>
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">数据卷:</label>
+            <div class="cubeui-input-block">
+                <input type="text" data-toggle="cubeui-textbox" name="Name" readonly
+                       value='{{>Name}}'
+                       data-options="
+                            "
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">Mountpoint:</label>
+            <div class="cubeui-input-block">
+
+                <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                       value='{{>Mountpoint}}'
+                       data-options="
+                            "
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">Scope:</label>
+            <div class="cubeui-input-block">
+
+                <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                       value='{{>Scope}}'
+                       data-options="
+                            "
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">CreatedAt:</label>
+            <div class="cubeui-input-block">
+
+                <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                       value='{{>Created}}'
+                       data-options="
+                            "
+                >
+            </div>
+        </div>
+    </div>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <label class="cubeui-form-label">数据卷驱动:</label>
+            <div class="cubeui-input-block">
+
+                <input type="text" data-toggle="cubeui-textbox" name="Driver" readonly
+                       value='{{>Driver}}'
+                       data-options="
+                            "
+                >
+            </div>
+        </div>
+    </div>
+
+    <fieldset>
+        <legend style="margin-bottom: 0px;">驱动选项</legend>
+    </fieldset>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                    <span style='line-height: 20px;padding-right:0px;'>选项</span>
+                </div>
+                <div class="cubeui-col-sm5" >
+                    <span style='line-height: 20px;padding-right:0px;'>值</span>
+                </div>
+            </div>
+            {{props Options}}
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                    <input type="text" data-toggle="cubeui-textbox" readonly
+                           value='{{>key}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">
+                </div>
+                <div class="cubeui-col-sm5">
+                    <input type="text" data-toggle="cubeui-textbox" readonly
+                           value='{{>prop}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">
+                </div>
+            </div>
+            {{/props}}
+        </div>
+    </div>
+
+    <fieldset>
+        <legend style="margin-bottom: 0px;">标签选项</legend>
+    </fieldset>
+
+    <div class="cubeui-row">
+        <div class="cubeui-col-sm12">
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                    <span style='line-height: 20px;padding-right:0px;'>标签</span>
+                </div>
+                <div class="cubeui-col-sm5" >
+                    <span style='line-height: 20px;padding-right:0px;'>值</span>
+                </div>
+            </div>
+            {{props Labels}}
+            <div class="cubeui-row">
+                <div class="cubeui-col-sm4 cubeui-col-sm-offset2" style="padding-right: 5px">
+                    <input type="text" data-toggle="cubeui-textbox" readonly
+                           value='{{>key}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">
+                </div>
+                <div class="cubeui-col-sm5">
+                    <input type="text" data-toggle="cubeui-textbox" readonly
+                           value='{{>prop}}' data-options="required:false,prompt:'租约ID，选择填写，默认为空，不使用租约'">
+                </div>
+            </div>
+            {{/props}}
+        </div>
+    </div>
+
+
+
+</div>

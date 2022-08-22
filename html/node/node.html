@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:jc="http://www.joinsunsoft.com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <script src="/static/common/js/ui.js"></script>
+</head>
+
+<body>
+<div id="loading" class="loading-wrap">
+    <div class="loading-content">
+        <div class="loading-round"></div>
+        <div class="loading-dot"></div>
+    </div>
+</div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+
+<div id='layout' data-toggle="cubeui-layout" data-options="fit:true">
+    <div data-options="region:'center',title:'',split:false,collapsible:false,border:true,width:1000,iconCls:'fa fa-user-circle-o',
+    headerCls:'border_right',bodyCls:'border_right'">
+
+        <table id="nodesDg"></table>
+        <!-- 表格工具栏开始 -->
+        <div id="nodesDg-toolbar" class="cubeui-toolbar"
+             data-options="grid:{
+                   type:'datagrid',
+                   id:'nodesDg'
+               }">
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                onClick:function(){
+                    updateTags();
+                },
+                btnCls: 'cubeui-btn-slateblue',
+                iconCls: 'fa fa-tags'
+            }">编辑元数据</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    method1: 'openDialog',
+                    onClick:function(){
+                        promoteLease();
+                    },
+                    extend: '#nodesDg-toolbar',
+                    btnCls: 'cubeui-btn-blue',
+                    iconCls: 'fa fa-hand-o-up'
+                }">提升管理节点</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        demoteLease();
+                    },
+                    extend: '#nodesDg-toolbar',
+                    btnCls: 'cubeui-btn-orange',
+                    iconCls: 'fa fa-hand-o-down'
+                }">降级工作节点</a>
+
+            <a  href="javascript:void(0)" data-toggle='cubeui-menubutton' data-options="{
+                    onClick:function(){
+                        removeLease();
+                    },
+                    extend: '#nodesDg-toolbar',
+                    btnCls: 'cubeui-btn-red',
+                    iconCls: 'fa fa-times'
+                }">删除节点</a>
+
+            <form id="queryForm" class="search-box">
+
+<!--                <input data-toggle="cubeui-checkbox" name="dangling" value="1" label="">-->
+<!--                <span style='line-height: 30px;padding-right:0px'>管理节点</span>-->
+
+                <span style='line-height: 30px;padding-right:0px'>节点角色：</span>
+                <input type="text" name="role" value="" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:160,
+                                required:false,prompt:'为空，查询所有',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'all','TEXT':'所有'},{'KEY':'manager','TEXT':'管理节点'},{'KEY':'worker','TEXT':'工作节点'}]
+                       ">
+
+                <span style='line-height: 30px;padding-right:0px'>成员身份：</span>
+                <input type="text" name="membership" value="" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:160,
+                                required:false,prompt:'为空，查询所有',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'all','TEXT':'所有'},{'KEY':'accepted','TEXT':'已经接受'},{'KEY':'pending','TEXT':'待定中'}]
+                       ">
+
+                <span style='line-height: 30px;padding-left:2px;padding-right:10px'></span>
+
+                <input type="text" id='search_type' name="search_type" value="name" data-toggle="cubeui-combobox"
+                       data-options="
+                                width:120,
+                                required:true,prompt:'查询方式，必须填写',
+                                valueField:'KEY',
+                                textField:'TEXT',
+                                data:[{'KEY':'name','TEXT':'Name'},{'KEY':'label','TEXT':'引擎Label'},{'KEY':'node.label','TEXT':'节点Label'},
+                                {'KEY':'id','TEXT':'ID'}]
+                       ">
+                <input type="text" id='search_key' name="search_key" data-toggle="cubeui-textbox"
+                       data-options="onClear:function(){
+                            $('#searchbtn').trigger('click');
+                       }, mask:'{{:~js(prefix)}}', prompt:'查询条件, 多条件逗号分隔；label方式 label1=a,label2=b',width:420">
+                <a href="javascript:void(0)" id="searchbtn"
+                   data-toggle="cubeui-menubutton"
+                   data-options="method:'query',
+                   iconCls:'fa fa-search',
+                   btnCls:'cubeui-btn-blue',
+                   form:{id:'queryForm'},
+                   grid:{type:'datagrid','id':'nodesDg'}">查询</a>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 表格工具栏结束 -->
+<div id="searchImageMm" data-toggle="cubeui-menu" style="width:120px;display:none" data-options="">
+    <div onclick="pullImgFromMenu()" data-options="iconCls:'fa fa-download'">拉取latest镜像</div>
+    <div onclick="setImgFromMenu()" data-options="iconCls:'fa fa-check-square-o'">指定镜像Tag</div>
+</div>
+</script>
+
+</body>
+<script>
+    new APP(function () {
+        return {
+            css: [],
+            js: [
+                ROOT_RES_URL + "/api/api.js",
+                ROOT_RES_URL + "/api/title.js",
+                ROOT_RES_URL + "/node/node.js",
+            ],
+            render: function () {
+                stop = true
+                console.log("finish")
+                APP.renderBody("#tmpl1", {})
+                refreshImageAndContainerInfo()
+
+                // let t = $.templates("#tmpl1").render({id:"1022", name:"davidliu"})
+                // $('body div').remove()
+                // $(t).appendTo($('body'))
+            }
+        }
+    });
+
+
+    APP.fn(function(){
+        loadLease();
+    })
+</script>
+</html>
